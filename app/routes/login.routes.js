@@ -9,4 +9,7 @@ login.get("/login", loginController.render);
 // Validacion de datos
 login.get("/auth", loginController.authentication);
 
+// Registro de usuarios
+login.post("/regis", loginController.registro);
+
 export default login;

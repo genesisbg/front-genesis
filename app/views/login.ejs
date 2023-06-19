@@ -24,14 +24,14 @@
             <div class="formulario-input-group">
 
                 <!-- Aqui ingresa con usuario o correo  -->
-                <input type="text" class="formulario-input" id="formulario-input" name="COD_USUARIO" autofocus required placeholder="Cedula">
-                <div class="formulario-input-error-mensaje"></div>
+                <input type="text" class="formulario-input" id="formulario-input" name="COD_USUARIO" autofocus required placeholder="Numero de documento">
+                <!-- <div class="formulario-input-error-mensaje"></div> -->
             </div>
 
             <!-- Contraseña -->
             <div class="formulario-input-group">
-                <input type="password" class="formulario-input" name="PASSWORD" autofocus required placeholder="contraseña" >
-                <div class="formulario-input-error-mensaje"></div>
+                <input type="password" class="formulario-input" name="PASSWORD" autofocus required placeholder="Contraseña" >
+                <!-- <div class="formulario-input-error-mensaje"></div> -->
             </div>
             <!-- Boton para acceder al menu principal -->
             <button class="formulario-button" type="submit">Continuar</button>
@@ -45,40 +45,64 @@
             <p class="formulario-text">
                 <a class="formulario-link" href="./" id="linkCreateAccount">No tienes cuenta? Create Una aqui.</a>
             </p>
-
-                           
-           <!-- Registro de un usuario -->
+       
         </form>
-
-        <form class="formulario formulario-hidden" id="createAccount">
+        
+        <!-- Registro de un usuario -->
+        <form class="formulario formulario-hidden" id="createAccount" action="/regis" method="post">
             <h1 class="formulario-title">Crear Cuenta</h1>
             <div class="formulario-mensaje formulario-mensaje-error"></div>
             <div class="formulario-input-group">
 
                 <!-- Crear Usuario -->
-                <input type="text" id="IngresarUsuario" class="formulario-input" name="usuario" autofocus placeholder="Usuario" >
-                <div class="formulario-input-error-mensaje"></div>
+                <input type="number" id="IngresarUsuario" class="formulario-input" name="COD_USUARIO" autofocus required placeholder="Numero de documento" >
+                <!-- <div class="formulario-input-error-mensaje"></div> -->
             </div>
 
-            <!-- Correo -->
+            <!-- NOMBRE -->
             <div class="formulario-input-group">
-                <input type="text" class="formulario-input" name="correo" autofocus placeholder="Correo electronico">
-                <div class="formulario-input-error-mensaje"></div>
+                <input type="text" class="formulario-input" name="NOM_USUARIO" autofocus required placeholder="Nombre">
+                <!-- <div class="formulario-input-error-mensaje"></div> -->
             </div>
 
-            <!-- Aqui el usuario pondra la contraseña que se desee -->
+            <!-- APELLIDO -->
             <div class="formulario-input-group">
-                <input type="password" class="formulario-input" name="password" autofocus placeholder="Contraseña">
-                <div class="formulario-input-error-mensaje"></div>
+                <input type="text" class="formulario-input" name="APELL_USUARIO" autofocus required placeholder="Apellido">
+                <!-- <div class="formulario-input-error-mensaje"></div> -->
             </div>
 
-            <!-- Confirmar contraseña  -->
+            <!-- CORREO -->
             <div class="formulario-input-group">
-                <input type="password" class="formulario-input" name="password2" autofocus placeholder="Confirmar contraseña">
-                <div class="formulario-input-error-mensaje"></div>
+                <input type="text" class="formulario-input" name="CORREO_USUARIO" autofocus required placeholder="Correo">
+                <!-- <div class="formulario-input-error-mensaje"></div> -->
+            </div>
+
+            <!-- CONTRASEÑA -->
+            <div class="formulario-input-group">
+                <input type="password" class="formulario-input" name="PASSWORD" autofocus required placeholder="Contraseña">
+                <!-- <div class="formulario-input-error-mensaje"></div> -->
+            </div>
+            
+            <!-- CONTRASEÑA -->
+            <div class="formulario-input-group">
+                <input type="date" class="formulario-input" name="FECHA_NACIMIENTO" autofocus required placeholder="Fecha de nacimiento">
+                <!-- <div class="formulario-input-error-mensaje"></div> -->
+            </div>
+            
+            <!-- Sexo -->
+            <div class="formulario-input-group">
+                <label class="label cursor-pointer">
+                    <span class="label-text">Masculino</span> 
+                    <input type="radio" name="SEXO_USUARIO" value="M" class="radio checked:bg-red-500" checked />
+                </label>
+
+                <label class="label cursor-pointer">
+                    <span class="label-text">Femenino</span> 
+                    <input type="radio" name="SEXO_USUARIO" value="F" class="radio checked:bg-blue-500" />
+                </label>
+            </div>
                 
                 <!-- Aqui se termina el registro -->
-            </div>
 
             <!-- Boton para acceder a el login y terminar el Registro  -->
             <button class="formulario-button" type="submit">Continuar</button>
@@ -97,7 +121,7 @@
     <script src="/assets/js/script-login.js"></script>
     <script src="/assets/js/sweetalert.js"></script>
     
-    <% if (errorCase === "0") { %>
+    <% if (alertCase === "0") { %>
         <script>
             Swal.fire({
             icon: 'error',
@@ -105,7 +129,7 @@
             text: 'Ingresa tus datos para continuar'
             })
         </script>
-    <% } else if (errorCase === "1") { %>
+    <% } else if (alertCase === "1") { %>
         <script>
             Swal.fire({
             icon: 'error',
@@ -113,7 +137,7 @@
             text: 'Necesitas estar registrado para continuar'
             })
         </script>
-    <% } else if (errorCase === "2") { %>
+    <% } else if (alertCase === "2") { %>
         <script>
             Swal.fire({
             icon: 'warning',
