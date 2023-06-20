@@ -1,6 +1,6 @@
 import { Router } from "express";
-import fetch from "node-fetch";
 import { homeController } from "../controllers/home.controller.js";
+import fetch from "node-fetch";
 const home = Router();
 
 // Vista principal de la pagina
