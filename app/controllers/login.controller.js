@@ -2,8 +2,8 @@ import jwt from "jsonwebtoken";
 import fetch from "node-fetch";
 
 const authentication = async (req, res) => {
-  const COD_USUARIO = req.query.COD_USUARIO; // 1020402543
-  const CONTRASEÑA = req.query.PASSWORD; // 962012d09b8170d912f0669f6d7d9d07
+  const COD_USUARIO = req.body.COD_USUARIO; // 1020402543
+  const CONTRASEÑA = req.body.PASSWORD; // 962012d09b8170d912f0669f6d7d9d07
 
   if (COD_USUARIO && CONTRASEÑA) {
     try {
@@ -16,7 +16,14 @@ const authentication = async (req, res) => {
       // En caso de no existir, se redirecciona al login nuevamente
       await fetch(url, options)
         .then((response) => response.json())
-        .then((datosUsuario) => datosUsuario.message ? res.redirect("/login?alert=1") : (payload = datosUsuario[0]));
+        .then((datosUsuario) => {
+          // datosUsuario.message ? res.redirect("/login?alert=1") : (payload = datosUsuario[0])
+          if (!datosUsuario.message) {
+            payload = datosUsuario[0];
+          } else {
+            return res.redirect('/login?alert=1')
+          }
+        });
 
       // creamos una variable token donde mandamos como primer parametro los datos a encriptar y luego la secret key con la cual se desencriptará
       if (CONTRASEÑA === payload.CONTRASEÑA) {

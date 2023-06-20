@@ -7,7 +7,7 @@ const login = Router();
 login.get("/login", loginController.render);
 
 // Validacion de datos
-login.get("/auth", loginController.authentication);
+login.post("/auth", loginController.authentication);
 
 // Registro de usuarios
 login.post("/regis", loginController.registro);
