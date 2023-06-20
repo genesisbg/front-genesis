@@ -102,6 +102,7 @@ const registro = async (req, res) => {
     "ESTADO": "ACTIVO",
     "COD_ROL": 1
   }
+
   // Valida si nos datos necesarios para el registro si existen
   if (datosUsuario.DNI_USUARIO && datosUsuario.NOM_USUARIO && datosUsuario.APELL_USUARIO && datosUsuario.CORREO && datosUsuario.CONTRASEÑA && datosUsuario.FECHA_NAC && datosUsuario.SEXO && datosUsuario.ESTADO && datosUsuario.COD_ROL) {
     try {
@@ -117,20 +118,19 @@ const registro = async (req, res) => {
       await fetch(url, option)
         .then(response => response.json())
         .then(resRegistro => {
-          if (resRegistro.message === "Usuario añadido") {
+          
+          if (resRegistro.message === "Usuario añadido") { // El usuario se registrò correctamente
             return res.redirect("/login?alert=3")
-          } else if (resRegistro.message === "El DNI ingresado ya existe") {
+          } else if (resRegistro.message === "El DNI ingresado ya existe") { // El usuario ingreso un documento que ya se encuentro registrado
             return res.redirect("/login?alert=4")
           }
         })
-      // .then(resRegistro => console.log(resRegistro))
     } catch (error) {
       console.log(error);
     }
-    res.send(datosUsuario)
+    // res.send(datosUsuario)
   } else {
-    // return res.redirect("/login?error=0")
-    res.send(datosUsuario)
+    return res.redirect("/login?error=0")
   }
 };
 

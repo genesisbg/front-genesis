@@ -145,6 +145,22 @@
             text: 'Verifica tus datos para continuar'
             })
         </script>
+    <% } else if (alertCase === "3") { %>
+        <script>
+            Swal.fire({
+            icon: 'success',
+            title: 'Has sido registrado correctamente!',
+            text: 'Ahora puedes iniciar sesión en la plataforma',
+            })
+        </script>
+    <% } else if (alertCase === "4") { %>
+        <script>
+            Swal.fire({
+            icon: 'error',
+            title: 'Cuidado!',
+            text: 'El documento ingresado ya se encuentra registrado!',
+            })
+        </script>
     <% } else { %>
         <script>
             async function mostrarToast() {
