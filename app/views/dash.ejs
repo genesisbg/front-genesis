@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dracula">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        .rotate-45 {
+            --transform-rotate: 45deg;
+            transform: rotate(45deg);
+        }
+
+        .group:hover .group-hover\:flex {
+            display: flex;
+        }
+    </style>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.8.10/tailwind.min.css'>
+    <%- include('./partials/boostrap') %>
+
+</head>
+
+<body>
+
+    <div class="flex w-screen h-screen text-gray-400 bg-gray-900">
+        <%- include('./partials/dashmenu.ejs') %>
+        <div class="flex-grow p-6 overflow-auto bg-gray-800">
+            <div class="grid grid-cols-3 gap-6">
+                <div class="h-30  col-span-1 bg-gray-700">
+                    <div class="stat place-items-center">
+                        <div class="stat-title">Usuarios</div>
+                        <div class="stat-value">31K</div>
+                        <div class="stat-desc">From January 1st to February 1st</div>
+                      </div>
+                    
+                </div>
+                <div class="h-30 col-span-1 bg-gray-700">
+                    <div class="stat place-items-center">
+                        <div class="stat-title">Administradores</div>
+                        <div class="stat-value text-secondary">4,200</div>
+                        <div class="stat-desc text-secondary">↗︎ 40 (2%)</div>
+                      </div>
+                    
+                </div>
+                <div class="h-30 col-span-1 bg-gray-700">
+                    <div class="stat place-items-center">
+                        <div class="stat-title">Autores</div>
+                        <div class="stat-value">1,200</div>
+                        <div class="stat-desc">↘︎ 90 (14%)</div>
+                      </div>
+                    
+                </div>
+                <div class="h-30 col-span-2 bg-gray-700"><div class="stat place-items-center">
+                    <div class="stat-title">Libros</div>
+                    <div class="stat-value">1,200</div>
+                    <div class="stat-desc">↘︎ 90 (14%)</div>
+                  </div>
+                </div>
+                <div class="h-30 col-span-1 bg-gray-700">
+                    <div class="stat place-items-center">
+                        <div class="stat-title">Genero</div>
+                        <div class="stat-value">1,200</div>
+                        <div class="stat-desc">↘︎ 90 (14%)</div>
+                      </div>
+                </div>
+                <div class="h-30 col-span-1 bg-gray-700">
+                    <div class="stat place-items-center">
+                        <div class="stat-title">Prestamos</div>
+                        <div class="stat-value">1,200</div>
+                        <div class="stat-desc">↘︎ 90 (14%)</div>
+                      </div>
+                </div>
+                <div class="h-30 col-span-2 bg-gray-700"></div>
+                <div class="h-30 col-span-3 bg-gray-700"></div>
+                <div class="h-30 col-span-1 bg-gray-700"></div>
+                <div class="h-30 col-span-1 bg-gray-700"></div>
+                <div class="h-30 col-span-1 bg-gray-700"></div>
+                <div class="h-30 col-span-2 bg-gray-700"></div>
+                <div class="h-30 col-span-1 bg-gray-700"></div>
+                <div class="h-30 col-span-1 bg-gray-700"></div>
+                <div class="h-30 col-span-2 bg-gray-700"></div>
+                <div class="h-30 col-span-3 bg-gray-700"></div>
+                <div class="h-30 col-span-1 bg-gray-700"></div>
+                <div class="h-30 col-span-1 bg-gray-700"></div>
+                <div class="h-30 col-span-1 bg-gray-700"></div>
+                <div class="h-30 col-span-2 bg-gray-700"></div>
+                <div class="h-30 col-span-1 bg-gray-700"></div>
+                <div class="h-30 col-span-1 bg-gray-700"></div>
+                <div class="h-30 col-span-2 bg-gray-700"></div>
+                <div class="h-30 col-span-3 bg-gray-700"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- partial -->
+
+</body>
+
+<style>
+    .group:focus .group-focus\:flex {
+        display: flex;
+    }
+</style>
+
+</html>

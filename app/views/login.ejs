@@ -1,0 +1,98 @@
+<!DOCTYPE html  data-theme="dracula>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>Login y register</title>
+    <!-- link css -->
+    <link rel="stylesheet" href="/assets/css/login-styles.css" />
+</head>
+
+<body>
+
+    
+    <div class="container">
+
+        <!-- Aqui empieza el formulario de el login -->
+        <form class="formulario" id="login" action="auth">
+            <div  class="formulario-title"><h2>Acceder</h2></div>
+            <div class="formulario-usuario" id="formulario-usuario">
+                <img src="../assets/img/usuario.png" class="img" id="img">
+            </div>
+            <div class="formulario-mensaje formulario-mensaje-error"></div>
+            <div class="formulario-input-group">
+
+                <!-- Aqui ingresa con usuario o correo  -->
+                <input type="text" class="formulario-input" id="formulario-input" name="COD_USUARIO" autofocus required placeholder="Cedula">
+                <div class="formulario-input-error-mensaje"></div>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="formulario-input-group">
+                <input type="password" class="formulario-input" name="PASSWORD" autofocus required placeholder="contraseña" >
+                <div class="formulario-input-error-mensaje"></div>
+            </div>
+            <!-- Boton para acceder al menu principal -->
+            <button class="formulario-button" type="submit">Continuar</button>
+            <p class="formulario-text">
+
+                <!-- Link para restablecer la contraseña -->
+                <a href="#" class="formulario-link" >Has olvidado tu contraseña?</a>
+            </p>
+
+            <!-- Link para crear cuenta e ir al registro -->
+            <p class="formulario-text">
+                <a class="formulario-link" href="./" id="linkCreateAccount">No tienes cuenta? Create Una aqui.</a>
+            </p>
+
+                           
+           <!-- Registro de un usuario -->
+        </form>
+
+        <form class="formulario formulario-hidden" id="createAccount">
+            <h1 class="formulario-title">Crear Cuenta</h1>
+            <div class="formulario-mensaje formulario-mensaje-error"></div>
+            <div class="formulario-input-group">
+
+                <!-- Crear Usuario -->
+                <input type="text" id="IngresarUsuario" class="formulario-input" name="usuario" autofocus placeholder="Usuario" >
+                <div class="formulario-input-error-mensaje"></div>
+            </div>
+
+            <!-- Correo -->
+            <div class="formulario-input-group">
+                <input type="text" class="formulario-input" name="correo" autofocus placeholder="Correo electronico">
+                <div class="formulario-input-error-mensaje"></div>
+            </div>
+
+            <!-- Aqui el usuario pondra la contraseña que se desee -->
+            <div class="formulario-input-group">
+                <input type="password" class="formulario-input" name="password" autofocus placeholder="Contraseña">
+                <div class="formulario-input-error-mensaje"></div>
+            </div>
+
+            <!-- Confirmar contraseña  -->
+            <div class="formulario-input-group">
+                <input type="password" class="formulario-input" name="password2" autofocus placeholder="Confirmar contraseña">
+                <div class="formulario-input-error-mensaje"></div>
+                
+                <!-- Aqui se termina el registro -->
+            </div>
+
+            <!-- Boton para acceder a el login y terminar el Registro  -->
+            <button class="formulario-button" type="submit">Continuar</button>
+            <p class="formulario-text">
+
+                <!-- Link Para acceder a el login  -->
+                <a class="formulario-link" href="./" id="linkLogin">Ya tienes tu cuenta? Accede Ahora mismo</a>
+            </p>
+        </form>
+    </div>
+
+    </main>
+
+    
+    <!-- script login -->
+    <script src="/assets/js/script-login.js"></script>
+</body>
+</html>
