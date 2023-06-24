@@ -7,7 +7,7 @@ export const validateToken = (req, res, next) => {
             next()
         }
         else {
-            res.redirect("registroUsuario")
+            res.redirect("/")
         }
     } catch (error) {
         console.log(error);
