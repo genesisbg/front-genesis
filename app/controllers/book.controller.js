@@ -27,6 +27,21 @@ const infoLibro = async (req, res) => {
   }
 };
 
+const authPrestamo = (req, res) => {
+  res.render("auth.ejs");
+};
+
+const confirmPrestamo = (req, res) => {
+  res.render("confirm.ejs");
+};
+
+const prestamo = (req, res) => {
+  res.render("prestamo.ejs");
+};
+
 export const bookController = {
   infoLibro,
+  authPrestamo,
+  confirmPrestamo,
+  prestamo
 };

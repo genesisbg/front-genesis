@@ -41,6 +41,11 @@ const index = async (req, res) => {
   }
 };
 
+const genero = (req, res) => {
+  res.render("pagina-genero.ejs");
+};
+
 export const homeController = {
   index,
+  genero
 };

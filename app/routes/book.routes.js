@@ -1,24 +1,16 @@
 import { Router } from "express";
 import { bookController } from "../controllers/book.controller.js";
-import {validateToken} from "../middlewares/token.js";
+import { validateToken } from "../middlewares/token.js";
 const book = Router();
 
 // vista para la pagina individual
-book.get("/pagina",bookController.infoLibro);
+book.get("/pagina", bookController.infoLibro);
 
 // vista autentificacion de prestamo
-book.get("/auth", (req, res) => {
-  res.render("auth.ejs");
-});
-
+book.get("/auth", validateToken, bookController.authPrestamo);
 // vista para la confirmacion de prestamo
-book.get("/confirm", (req, res) => {
-  res.render("confirm.ejs");
-});
-
+book.get("/confirm", validateToken, bookController.confirmPrestamo);
 // vista para el prestamo
-book.get("/prestamo", (req, res) => {
-  res.render("prestamo.ejs");
-});
+book.get("/prestamo", validateToken, bookController.prestamo);
 
 export default book;
