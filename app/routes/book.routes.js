@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { bookController } from "../controllers/book.controller.js";
+import {validateToken} from "../middlewares/token.js";
 const book = Router();
 
 // vista para la pagina individual
-book.get("/pagina", bookController.infoLibro);
+book.get("/pagina",bookController.infoLibro);
 
 // vista autentificacion de prestamo
 book.get("/auth", (req, res) => {
