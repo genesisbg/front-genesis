@@ -1,31 +1,30 @@
 import { Router } from "express";
+import fetch from "node-fetch";
 const admin = Router();
-
+import{adminController} from '../controllers/admin.controller.js'
 // Vista principal del administrador
-admin.get("/", (req, res) => {
-  res.render("dash.ejs");
-});
+admin.get("/",adminController.dash);
 
 //vista para el formulario para agregar libros
-admin.get("/agregar", (req, res) => {
-  res.render("agregar-libros.ejs");
-});
+admin.get("/agregar", adminController.agregarLibros );
 
 //vista para el formulario la devolucion de libros
-admin.get("/devolucion", (req, res) => {
-  res.render("devolucion.ejs");
-});
+admin.get("/devolucion", adminController.devolucion );
+
 //vista de usuarios para administration
-admin.get("/usuarios", (req, res) => {
-  res.render("dashusuarios.ejs");
-});
+admin.get("/usuarios", adminController.dashUsuarios );
+
+admin.post("/insertarUsuario", adminController.insertarUsuario)
+
+admin.get("/eliminarUsuario", adminController.eliminarUsuario)
+
 //vista de los libros para administration
-admin.get("/libros", (req, res) => {
-  res.render("dashlibros.ejs");
-});
+admin.get("/libros", adminController.dashLibros);
+
+admin.get("/eliminarLibros", adminController.eliminarLibros )
 //vista de los prestamos para administration
-admin.get("/prestamos", (req, res) => {
-  res.render("dashprestamos.ejs");
-});
+admin.get("/prestamos",adminController.dashPrestamos);
+admin.get("/eliminarPrestamos", adminController.eliminarPrestamos)
+
 
 export default admin;
