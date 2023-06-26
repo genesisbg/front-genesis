@@ -13,7 +13,6 @@ const devolucion= (req, res) => {
 const dashUsuarios = async(req, res) => {
     const alertCase = req.query.alert
 
-
     try {
         const url =`http://localhost:3000/api/user`;
         const option ={method: "GET"};
@@ -64,13 +63,13 @@ const insertarUsuario = async(req, res) => {
         "NOM_USUARIO": req.body.NOM_USUARIO,
         "APELL_USUARIO": req.body.APELL_USUARIO,
         "CORREO": req.body.CORREO_USUARIO,
-        "CONTRASEÑA": req.body.PASSWORD,
+        "CONTRASENA": req.body.PASSWORD,
         "FECHA_NAC": req.body.FECHA_NACIMIENTO,
         "SEXO": req.body.sexo,
         "ESTADO": "ACTIVO",
         "COD_ROL": req.body.rol
       }
-      if (datosUsuario.DNI_USUARIO && datosUsuario.NOM_USUARIO && datosUsuario.APELL_USUARIO && datosUsuario.CORREO && datosUsuario.CONTRASEÑA && datosUsuario.FECHA_NAC && datosUsuario.SEXO && datosUsuario.ESTADO && datosUsuario.COD_ROL) {
+      if (datosUsuario.DNI_USUARIO && datosUsuario.NOM_USUARIO && datosUsuario.APELL_USUARIO && datosUsuario.CORREO && datosUsuario.CONTRASENA && datosUsuario.FECHA_NAC && datosUsuario.SEXO && datosUsuario.ESTADO && datosUsuario.COD_ROL) {
         try {
           const url = 'http://localhost:3000/api/user';
           const option = {

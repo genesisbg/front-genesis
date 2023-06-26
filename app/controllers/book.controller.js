@@ -21,6 +21,7 @@ const infoLibro = async (req, res) => {
         console.log(err);
       });
 
+    console.log(infoLibro)
     res.render("pagina.ejs", { infoLibro: infoLibro });
   } else {
     res.redirect("/");

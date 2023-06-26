@@ -28,7 +28,7 @@ const authentication = async (req, res) => {
       if (CONTRASENA === payload.CONTRASENA) {
         const token = jwt.sign(payload, process.env.SECRET_KEY, {
           expiresIn: process.env.EXPIRE_TOKEN,
-      });
+        });
 
         res.cookie("cookieBG", token);
         return res.redirect("/user/perfil");
