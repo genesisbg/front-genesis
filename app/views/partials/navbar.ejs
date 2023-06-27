@@ -50,9 +50,17 @@
           <a class="justify-between text-white" href="/admin/libros">
             Admin
           </a>
+          
+          <% if (session === true) { %>
+            <a class="justify-between text-white" href="/logout">
+              Logout
+            </a>
+          <% } else { %>
           <a class="justify-between text-white" href="/login">
             Login
           </a>
+          <% } %>
+          
         </li>
         <!-- <li><a>Settings</a></li>
         <li><a>Logout</a></li> -->

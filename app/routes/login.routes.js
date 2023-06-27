@@ -6,6 +6,9 @@ const login = Router();
 // Vista de inicio de sesion
 login.get("/login", loginController.render);
 
+// Vista de inicio de sesion
+login.get("/logout", loginController.logout);
+
 // Validacion de datos
 login.post("/auth", loginController.authentication);
 
