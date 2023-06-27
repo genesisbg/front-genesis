@@ -137,8 +137,18 @@ const registro = async (req, res) => {
   }
 };
 
+const logout = (req, res) => {
+  if (req.cookies.cookieBG) {
+    res.clearCookie('cookieBG')
+    res.redirect('/')
+  }else{
+    res.redirect('/')
+  }
+}
+
 export const loginController = {
   authentication,
   render,
-  registro
+  registro,
+  logout
 };

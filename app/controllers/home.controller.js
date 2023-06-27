@@ -7,6 +7,7 @@ const index = async (req, res) => {
     let url = "http://localhost:3000/api/books/";
     let options = { method: "GET" };
     let datosLibro = {};
+    let session = false;
 
     await fetch(url, options)
       .then((response) => response.json())
@@ -33,8 +34,12 @@ const index = async (req, res) => {
           };
         }));
 
+        if (req.cookies.cookieBG){
+          session = true
+        }
+
         datosLibro = convert;
-        res.render("index", { libros: datosLibro });
+        res.render("index", { libros: datosLibro, session: session });
       });
   } catch (error) {
     console.error(error);
