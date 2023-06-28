@@ -32,6 +32,55 @@ const infoLibro = async (req, res) => {
   }
 };
 
+
+let datosPrestamo = {
+
+  
+    "FECHA_PRESTAMO": "2011-11-12",
+    "ESTADO": 1,
+    "DNI_USUARIO": 100
+}
+
+
+// Valida si nos datos necesarios para el registro si existen
+if (datosPrestamo.DNI_USUARIO && datosPrestamo.ESTADO) {
+
+try {
+  const url = 'http://localhost:3000/api/book';
+      const option = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datosPrestamo)
+      }
+
+      await fetch(url, option)
+        .then(response => response.json())
+        .then(resPrestamo => {         })
+
+} catch (error) {
+  console.log(error);
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const authPrestamo = (req, res) => {
   res.render("auth.ejs");
 };
