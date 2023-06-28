@@ -1,6 +1,7 @@
 import { Buffer } from "node:buffer";
 import fetch from "node-fetch";
 import { fileTypeFromBuffer } from "file-type";
+import jwt from "jsonwebtoken";
 
 const index = async (req, res) => {
   try {

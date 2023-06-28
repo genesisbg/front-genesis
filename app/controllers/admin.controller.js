@@ -1,16 +1,18 @@
-import { response } from "express";
 import jwt from "jsonwebtoken";
 import fetch from "node-fetch";
 
 const dash = (req, res) => {
     res.render("dash.ejs");
 }
+
 const agregarLibros =(req, res) => {
     res.render("agregar-libros.ejs");
 }
+
 const devolucion= (req, res) => {
     res.render("devolucion.ejs");
 }
+
 const dashUsuarios = async(req, res) => {
     const alertCase = req.query.alert
 
@@ -56,6 +58,7 @@ const dashUsuarios = async(req, res) => {
     }
     
 }
+
 const insertarUsuario = async(req, res) => {  
     if (req.body.COD_USUARIO){
    
@@ -101,6 +104,7 @@ const insertarUsuario = async(req, res) => {
     }
     
 }
+
 const eliminarUsuario = async(req, res)=>{
   const id = req.query.id;
   const url = `http://localhost:3000/api/user/${id}`;
@@ -138,6 +142,7 @@ const dashLibros =async (req, res) => {
         console.error(error);
     }
 }
+
 const eliminarLibros =async (req, res) =>{
   const id = req.query.id;
   const url = `http://localhost:3000/api/books/${id}`;
@@ -158,6 +163,7 @@ const result = await fetch(url, option)
 res.redirect("/admin/libros");
 
 }
+
 const dashPrestamos =async (req, res) => {
     try {
         const url =`http://localhost:3000/api/loan-header`;
@@ -177,6 +183,7 @@ const dashPrestamos =async (req, res) => {
     }
     // res.render("dashprestamos",{prestamos: dataPrestamo});
 }
+
 const eliminarPrestamos =async (req, res) => {
 
     const id = req.query.id;
