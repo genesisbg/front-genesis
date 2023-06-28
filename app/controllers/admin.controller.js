@@ -1,4 +1,5 @@
 import { response } from "express";
+import jwt from "jsonwebtoken";
 import fetch from "node-fetch";
 
 const dash = (req, res) => {
@@ -121,8 +122,7 @@ res.redirect("/admin/usuarios");
 }
 
 const dashLibros =async (req, res) => {
-
-    try {
+  try {
         const url =`http://localhost:3000/api/books`;
         const option ={method: "GET"};
         let dataLibros = {};
@@ -131,7 +131,7 @@ const dashLibros =async (req, res) => {
         .then((response)=> response.json())
         .then((datosL)=>{
             dataLibros = datosL;
-            console.log(dataLibros);
+            // console.log(dataLibros);
         })
         res.render("dashlibros.ejs", { libros: dataLibros })
     } catch (error) {
