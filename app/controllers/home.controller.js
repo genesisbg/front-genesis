@@ -47,7 +47,13 @@ const index = async (req, res) => {
 };
 
 const genero = (req, res) => {
-  res.render("pagina-genero.ejs");
+  let session = false;
+  
+  if (req.cookies.cookieBG){
+    session = true
+  };
+
+  res.render("pagina-genero.ejs",{session: session});
 };
 
 export const homeController = {

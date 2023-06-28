@@ -3,6 +3,7 @@ import fetch from "node-fetch";
 const infoLibro = async (req, res) => {
   if (req.query.COD_LIBRO) {
     let COD_LIBRO = req.query.COD_LIBRO;
+    let session = false;
 
     let url = `http://localhost:3000/api/books/${COD_LIBRO}`;
     let options = { method: "GET" };
@@ -21,8 +22,11 @@ const infoLibro = async (req, res) => {
         console.log(err);
       });
 
-    console.log(infoLibro)
-    res.render("pagina.ejs", { infoLibro: infoLibro });
+      if (req.cookies.cookieBG){
+        session = true
+      }
+
+    res.render("pagina.ejs", { infoLibro: infoLibro, session:session });
   } else {
     res.redirect("/");
   }

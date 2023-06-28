@@ -1,4 +1,5 @@
 import { response } from "express";
+import jwt from "jsonwebtoken";
 import fetch from "node-fetch";
 
 const dash = (req, res) => {
@@ -119,6 +120,7 @@ const result = await fetch(url, option)
 })
 res.redirect("/admin/usuarios");
 }
+
 
 const dashLibros = async(req, res) => {
   const alertCase = req.query.alert
