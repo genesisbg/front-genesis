@@ -20,6 +20,8 @@ admin.get("/eliminarUsuario", validateToken, adminController.eliminarUsuario)
 
 //vista de los libros para administration
 admin.get("/libros", validateToken, adminController.dashLibros);
+admin.post("/insertarLibros", validateToken, adminController.insertarLibros)
+admin.post("/editarLibros", validateToken, adminController.editarLibros)
 admin.get("/eliminarLibros", validateToken, adminController.eliminarLibros )
 
 //vista de los prestamos para administration

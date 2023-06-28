@@ -120,24 +120,147 @@ const result = await fetch(url, option)
 res.redirect("/admin/usuarios");
 }
 
-const dashLibros =async (req, res) => {
+const dashLibros = async(req, res) => {
+  const alertCase = req.query.alert
 
-    try {
-        const url =`http://localhost:3000/api/books`;
-        const option ={method: "GET"};
-        let dataLibros = {};
-    
-        await fetch(url, option)
-        .then((response)=> response.json())
-        .then((datosL)=>{
-            dataLibros = datosL;
-            console.log(dataLibros);
-        })
-        res.render("dashlibros.ejs", { libros: dataLibros })
-    } catch (error) {
-        console.error(error);
-    }
+  try {
+      const url =`http://localhost:3000/api/books`;
+      const option ={method: "GET"};
+      let datosLibros = {};
+  
+      await fetch(url, option)
+      .then((response)=> response.json())
+      .then((datosL)=>{
+          datosLibros = datosL;
+          console.log(datosLibros);
+          
+      })
+      if (alertCase) {
+          switch (alertCase) {
+            // sin datos en el formulario
+            case "0":
+              res.render("dashlibros", { alertCase: alertCase, libros: datosLibros });
+              // res.render("login")
+              break;
+      
+            // Usuario añadido
+            case "1":
+              res.render("dashlibros", { alertCase: alertCase, libros: datosLibros });
+              break;
+      
+            // dni ya registrado  
+            case "2":
+              res.render("dashlibros", { alertCase: alertCase, libros: datosLibros });
+              break;
+      
+            default:
+              res.render("dashlibros", { alertCase: alertCase, libros: datosLibros });
+              break;
+          }
+        } else {
+          res.render("dashlibros", { alertCase: alertCase, libros: datosLibros });
+        }
+  } catch (error) {
+      console.error(error);
+  }
+  
 }
+const insertarLibros = async(req, res) => {  
+  if (req.body.COD_LIBRO){
+ 
+  let datosLibro = {
+    "COD_LIBRO":req.body.COD_LIBRO,
+      "SIPNOPSIS": req.body.SIPNOPSIS,
+      "TITULO": req.body.TITULO,
+      "FECHA_PUBLICACION": req.body.FECHA_PUBLICACION,
+      "NUM_SERIE": req.body.NUM_SERIE,
+      "EDITORIAL": req.body.EDITORIAL,
+      "GENERO": req.body.COD_GENERO,
+      "NOM_AUTOR": req.body.NOM_AUTOR,
+      "IMAGEN": req.body.IMAGEN,
+    }
+    if (datosLibro.COD_LIBRO && datosLibro.SIPNOPSIS && datosLibro.TITULO && datosLibro.FECHA_PUBLICACION && datosLibro.NUM_SERIE && datosLibro.EDITORIAL && datosLibro.GENERO&& datosLibro.NOM_AUTOR&&datosLibro.IMAGEN) {
+      try {
+        const url = 'http://localhost:3000/api/books';
+        const option = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(datosLibro)
+        }
+  
+        await fetch(url, option)
+          .then(response => response.json())
+          .then(resRegistro => {
+            res.redirect('hola')
+            // if (resRegistro.message === "Usuario añadido") { // El usuario se registrò correctamente
+            //   return res.redirect("/admin/usuarios?alert=1")
+            // } else if (resRegistro.message === "El DNI ingresado ya existe") { // El usuario ingreso un documento que ya se encuentro registrado
+            //   return res.redirect("/admin/usuarios?alert=2")
+            // }
+          })
+      } catch (error) {
+        console.log(error);
+      }
+      // res.send(datosUsuario)
+    } else {
+      return res.redirect("/admin/libros")
+      console.log("No se")
+    }
+  }
+  
+}
+const editarLibros = async(req,res)=>{
+    if (req.body.COD_LIBRO) {
+      let datosLibro = {
+        "SIPNOPSIS": req.body.SIPNOPSIS,
+        "TITULO": req.body.TITULO,
+        "FECHA_PUBLICACION": req.body.FECHA_PUBLICACION,
+        "NUM_SERIE": req.body.NUM_SERIE,
+        "EDITORIAL": req.body.EDITORIAL,
+        "GENERO": req.body.COD_GENERO,
+        "NOM_AUTOR": req.body.NOM_AUTOR,
+        "IMAGEN": req.body.IMAGEN,
+      };
+  
+      if (
+        datosLibro.SIPNOPSIS &&
+        datosLibro.TITULO &&
+        datosLibro.FECHA_PUBLICACION &&
+        datosLibro.NUM_SERIE &&
+        datosLibro.EDITORIAL &&
+        datosLibro.GENERO &&
+        datosLibro.NOM_AUTOR &&
+        datosLibro.IMAGEN
+      ) {
+        try {
+          const url = `http://localhost:3000/api/books/${COD_LIBRO}`;  // URL del libro específico a actualizar
+          const option = {
+            method: "PUT",  // Método HTTP PUT para actualizar el libro
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datosLibro)
+          };
+  
+          await fetch(url, option)
+            .then(response => response.json())
+            .then(resRegistro => {
+              // Realizar acciones según la respuesta del servidor
+              // Redirigir a una página específica después de la actualización
+              res.redirect("holacion");
+            });
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        return res.redirect("/admin/libros");
+        console.log("No se");
+      }
+    }
+  };
+  
 const eliminarLibros =async (req, res) =>{
   const id = req.query.id;
   const url = `http://localhost:3000/api/books/${id}`;
@@ -155,7 +278,7 @@ const result = await fetch(url, option)
     }
    
 })
-res.redirect("/admin/libros");
+ return res.redirect("/admin/libros");
 
 }
 const dashPrestamos =async (req, res) => {
@@ -194,7 +317,7 @@ const eliminarPrestamos =async (req, res) => {
               console.log("NO BORRADO");
           }
         })
-      res.redirect("/admin/prestamos");
+       return res.redirect("/admin/prestamos");
 }
 
 export const adminController = {
@@ -207,5 +330,7 @@ export const adminController = {
     insertarUsuario,
     eliminarUsuario,
     eliminarLibros,
-    eliminarPrestamos
+    eliminarPrestamos,
+    insertarLibros,
+    editarLibros
 }
