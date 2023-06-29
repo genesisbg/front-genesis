@@ -21,10 +21,13 @@ admin.get("/eliminarUsuario", validateToken, validateAdmin, adminController.elim
 
 //vista de los libros para administration
 admin.get("/libros", validateToken, validateAdmin, adminController.dashLibros);
+admin.post("/insertarLibros", validateToken, validateAdmin, adminController.insertarLibros)
+admin.post("/editarLibros", validateToken, validateAdmin, adminController.editarLibros)
 admin.get("/eliminarLibros", validateToken, validateAdmin, adminController.eliminarLibros )
+
 
 //vista de los prestamos para administration
 admin.get("/prestamos", validateToken, validateAdmin, adminController.dashPrestamos);
-admin.get("/eliminarPrestamos", validateToken, validateAdmin, adminController.eliminarPrestamos)
+admin.get("/eliminarPrestamos", validateToken, validateAdmin, adminController.eliminarPrestamos);
 
 export default admin;
