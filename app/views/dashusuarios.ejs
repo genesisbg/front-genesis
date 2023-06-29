@@ -164,6 +164,7 @@
                                                         </svg>
                                                         Edit user
                                                     </button>
+                                                    <a href="/admin/ban?id=<%= usuario.DNI_USUARIO %>&state=<%= usuario.ESTADO %>">
                                                     <button type="button" data-modal-toggle="cambiar-estaado"
                                                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
                                                         <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -173,8 +174,9 @@
                                                             <path d="M44 11L38 5L32 11" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                                                             <path d="M16 37L10 43L4 37" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                                                             </svg>
-                                                        Estado
-                                                    </button>
+                                                            Estado
+                                                        </button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             <!-- Edit User Modal -->

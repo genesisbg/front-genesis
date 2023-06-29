@@ -25,7 +25,7 @@ const dashUsuarios = async (req, res) => {
       .then((response) => response.json())
       .then((datosU) => {
         datosUsuarios = datosU;
-        console.log(datosUsuarios);
+        // console.log(datosUsuarios);
 
       })
     if (alertCase) {
@@ -105,24 +105,67 @@ const insertarUsuario = async (req, res) => {
 
 }
 
-const eliminarUsuario = async (req, res) => {
+const banUsuario = async (req, res) => {
   const id = req.query.id;
-  const url = `http://localhost:3000/api/user/${id}`;
-  const option = {
-    method: "DELETE"
-  };
-  const result = await fetch(url, option)
-    .then(response => response.json())
-    .then(data => {
-      if (data.affectedRows == 1) {
+  const state = req.query.state;
+  let banData = {}
 
-        console.log("borrado");
-      } else {
-        console.log("NO BORRADO");
+
+  if (state && id) {
+
+    switch (state) {
+      
+      case "ACTIVO":
+        banData = {
+          "ESTADO": "INACTIVO"
+        }
+        break;
+
+        case "INACTIVO":
+          banData = {
+            "ESTADO": "ACTIVO"
+          }
+          break;
+
+      default:
+        banData = {
+          "ESTADO": "INACTIVO"
+        }
+        break;
+    }
+
+    try {
+
+      const url = `http://localhost:3000/api/user/${id}`;
+      const option = {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(banData)
       }
 
-    })
-  res.redirect("/admin/usuarios");
+      await fetch(url, option)
+        .then(response => response.json())
+        .then(resBan => {
+
+          console.log(resBan)
+
+          if (resBan.message === 'Estado del usuario actualizado') {
+            res.redirect('usuarios')
+          } else {
+            res.redirect('usuarios')
+          }
+
+        })
+
+    } catch (error) {
+      console.error(error)
+    }
+  } else {
+    res.redirect('usuarios')
+  }
+
 }
 
 
@@ -336,35 +379,35 @@ const generatePdf = async (req, res, next) => {
   let array = [];
 
   const document = {
-      html: html,
-      data: {
-          products: obj
-      },
-      path: './docs/' + filename
+    html: html,
+    data: {
+      products: obj
+    },
+    path: './docs/' + filename
   }
   pdf.create(document, options)
-      .then(res => {
-          console.log(res);
-      }).catch(error => {
-          console.log(error);
-      });
+    .then(res => {
+      console.log(res);
+    }).catch(error => {
+      console.log(error);
+    });
 
-      res.render('download', {
-          path: filepath
-      });
+  res.render('download', {
+    path: filepath
+  });
 }
 export const adminController = {
-    dash,
-    agregarLibros,
-    devolucion,
-    dashUsuarios,
-    dashLibros,
-    dashPrestamos,
-    insertarUsuario,
-    eliminarUsuario,
-    eliminarLibros,
-    eliminarPrestamos,
-    insertarLibros,
-    editarLibros,
-    generatePdf
+  dash,
+  agregarLibros,
+  devolucion,
+  dashUsuarios,
+  dashLibros,
+  dashPrestamos,
+  insertarUsuario,
+  banUsuario,
+  eliminarLibros,
+  eliminarPrestamos,
+  insertarLibros,
+  editarLibros,
+  generatePdf
 }

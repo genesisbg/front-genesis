@@ -17,7 +17,7 @@ admin.get("/devolucion", validateToken, validateAdmin, adminController.devolucio
 //vista de usuarios para administration
 admin.get("/usuarios", validateToken, validateAdmin, adminController.dashUsuarios );
 admin.post("/insertarUsuario", validateToken, validateAdmin, adminController.insertarUsuario)
-admin.get("/eliminarUsuario", validateToken, validateAdmin, adminController.eliminarUsuario)
+admin.get("/ban", validateToken, validateAdmin, adminController.banUsuario)
 
 //vista de los libros para administration
 admin.get("/libros", validateToken, validateAdmin, adminController.dashLibros);

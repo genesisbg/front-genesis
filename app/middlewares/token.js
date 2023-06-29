@@ -10,7 +10,6 @@ export const validateToken = (req, res, next) => {
             res.redirect("/")
         }
     } catch (error) {
-        // console.error(error);
         res.redirect("/");
     }
 };
