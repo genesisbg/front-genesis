@@ -302,6 +302,7 @@ const dashPrestamos =async (req, res) => {
     }
     // res.render("dashprestamos",{prestamos: dataPrestamo});
 }
+
 const eliminarPrestamos =async (req, res) => {
 
     const id = req.query.id;
@@ -321,7 +322,29 @@ const eliminarPrestamos =async (req, res) => {
         })
        return res.redirect("/admin/prestamos");
 }
+const generatePdf = async (req, res, next) => {
+  const html = fs.readFileSync(path.join(__dirname, '../views/template.html'), 'utf-8');
+  const filename = Math.random() + '_doc' + '.pdf';
+  let array = [];
 
+  const document = {
+      html: html,
+      data: {
+          products: obj
+      },
+      path: './docs/' + filename
+  }
+  pdf.create(document, options)
+      .then(res => {
+          console.log(res);
+      }).catch(error => {
+          console.log(error);
+      });
+
+      res.render('download', {
+          path: filepath
+      });
+}
 export const adminController = {
     dash,
     agregarLibros,
@@ -334,5 +357,7 @@ export const adminController = {
     eliminarLibros,
     eliminarPrestamos,
     insertarLibros,
-    editarLibros
+    editarLibros,
+    generatePdf
+
 }

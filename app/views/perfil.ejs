@@ -1,118 +1,187 @@
 <!DOCTYPE html>
-<html lang="en"  data-theme="dracula">
+<html lang="en" data-theme="dracula">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Perfil</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <meta name="author" content="">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Perfil</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
 
-  <!-- Font Awesome if you need it
+	<!-- Font Awesome if you need it
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   -->
-  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> 
-  <!--Replace with your tailwind.css once created-->
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
 
+	<%- include('./partials/boostrap.ejs') %>
 
 </head>
 
-<body class="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover" style="background-image:url('https://source.unsplash.com/1L71sPT5XKc');">
+<body class="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover"
+	style="background-image:url('https://source.unsplash.com/1L71sPT5XKc');">
 
 
-	<div class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
-    
-		<!--Main Col-->
-		<div id="profile" class="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-white opacity-75 mx-6 lg:mx-0">
-		
-	
-			<div class="p-4 md:p-12 text-center sm:text-left">
-				<!-- Image for mobile view-->
-				<div class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style="background-image: url('https://source.unsplash.com/MP0IUfwrn0A')"></div>
-				
-				<div class="navbar-center">
-					<a class="btn btn-ghost normal-case text-xl" ></a>
-				  </div>
-				<div class="mx-auto sm:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25">Your Name </div>
-	
-	
-				<div class="pt-8 pb-6">
-					<a >Actualiza tus datos</a>  
+	<div class="p-16">
+		<div class="p-8 bg-blue-200 shadow mt-24">
+			<div class="grid grid-cols-1 md:grid-cols-3">
+				<div class="relative">
+					<div
+						class="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24" viewBox="0 0 20 20"
+							fill="currentColor">
+							<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+								clip-rule="evenodd" />
+						</svg>
+					</div>
 				</div>
-					 
-				<input type="email" placeholder="Correo Electronico" class="input input-bordered input-primary w-full max-w-xs" />
-				<div class="divider"></div> 
-				<input type="number" placeholder="Numero de Telefono" class="input input-bordered input-primary w-full max-w-xs" />
-				<div class="divider"></div> 
-				<input type="text" placeholder="direccion" class="input input-bordered input-primary w-full max-w-xs" />
-				<div class="pt-12 pb-8">
-					<button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full" >
-					  <a href="/user/perfil">Actualizar</a> 
-					</button> 
-					<button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full" >
-						<a href="/">Pagina Principal</a> 
-					  </button> 
-				</div>
-				<!-- Use https://simpleicons.org/ to find the svg for your preferred product --> 
-	
+				<div class="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
+					<button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="text-white py-2 px-4 uppercase rounded bg-blue-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5" type="button">
+						Actualizar Datos
+					  </button>
+					 <a href="/"
+						class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+						Pagina Principal</a> </div>
 			</div>
-	
+			<div class="mt-20 text-center border-b pb-12">
+				<h1 class="text-4xl font-medium text-gray-700">Jessica Jones, <span
+						class="font-light text-gray-500">27</span></h1>
+				<p class="font-light text-gray-600 mt-3">Bucharest, Romania</p>
+				<p class="mt-8 text-gray-500">Solution Manager - Creative Tim Officer</p>
+				<p class="mt-2 text-gray-500">University of Computer Science</p>
+			</div>
+			<div class="mt-12 flex flex-col justify-center">
+				<!-- component -->
+
+				<div class="col-span-12">
+					<div class="overflow-auto lg:overflow-visible ">
+						<table class="table text-gray-400 border-separate space-y-6 text-sm">
+							<thead class="bg-gray-800 text-gray-500">
+								<tr>
+									<th class="p-3">Codigo del prestamo</th>
+									<th class="p-3 text-left">Fecha de Prestamo</th>
+									<th class="p-3 text-left">Titulo</th>
+									<th class="p-3 text-left">Fecha de devolucion</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% prestamosS.forEach(prestamo => { %>
+								 
+							
+								<tr class="bg-gray-800">
+									<td class="p-3">
+										<div class="flex align-items-center">
+											<div class="ml-3">
+												<div class=""><%= prestamo.COD_ENC_PRESTAMO %></div>
+											</div>
+										</div>
+									</td>
+									<td class="p-3">
+										<%= prestamo.FECHA_PRESTAMO %>
+									</td>
+									<td class="p-3 font-bold">
+										<%= prestamo.ESTADO %>
+									</td>
+									<td class="p-3">
+										<span class="bg-green-400 text-gray-50 rounded-md px-2"><%= prestamo.FECHA_DEVOLUCION %></span>
+									</td>
+								</tr>
+								<% }) %>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<style>
+				.table {
+					border-spacing: 0 15px;
+				}
+
+				i {
+					font-size: 1rem !important;
+				}
+
+				.table tr {
+					border-radius: 20px;
+				}
+
+				tr td:nth-child(n+5),
+				tr th:nth-child(n+5) {
+					border-radius: 0 .625rem .625rem 0;
+				}
+
+				tr td:nth-child(1),
+				tr th:nth-child(1) {
+					border-radius: .625rem 0 0 .625rem;
+				}
+			</style>
 		</div>
-		
-		<!--Img Col-->
-		<div class="w-full lg:w-2/5">
-			<!-- Big profile image for side bar (desktop) -->
-			<img src="https://source.unsplash.com/MP0IUfwrn0A" class="rounded-none lg:rounded-lg shadow-2x3 hidden lg:block">
-			<!-- Image from: http://unsplash.com/photos/MP0IUfwrn0A -->
-			
-		</div>
-		
-		
-		<!-- Pin to top right corner -->
-		  <div class="absolute top-0 right-0 h-12 w-18 p-4">
-			<button class="js-change-theme focus:outline-none">🌙</button>
-		  </div>
-	
 	</div>
+	</div>
+	<div id="authentication-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+		<div class="relative w-full max-w-md max-h-full">
+			<!-- Modal content -->
+			<div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+				<button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal">
+					<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+					<span class="sr-only">Close modal</span>
+				</button>
+				<div class="px-6 py-6 lg:px-8">
+					<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Actualiza tus datos</h3>
+					<form class="space-y-6" action="#">
+						<div>
+							<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+							<input type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required>
+						</div>
+						<div>
+							<label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>
+							<input type="email" name="password" id="password" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+						</div>
+						<div>
+							<label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
+							<input type="password" name="password" id="password" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+						</div>
+						<button type="submit" class="w-full text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Actualizar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div> 
 
 
 	<script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
 	<script src="https://unpkg.com/tippy.js@4"></script>
 	<script>
 		//Init tooltips
-		tippy('.link',{
-		  placement: 'bottom'
+		tippy('.link', {
+			placement: 'bottom'
 		})
 
 		//Toggle mode
 		const toggle = document.querySelector('.js-change-theme');
 		const body = document.querySelector('body');
 		const profile = document.getElementById('profile');
-		
-		
+
+
 		toggle.addEventListener('click', () => {
 
-		  if (body.classList.contains('text-gray-900')) {
-			toggle.innerHTML = "☀️";
-			body.classList.remove('text-gray-900');
-			body.classList.add('text-gray-100');
-			profile.classList.remove('bg-white');
-			profile.classList.add('bg-gray-900');
-		  } else
-		  {
-			toggle.innerHTML = "🌙";
-			body.classList.remove('text-gray-100');
-			body.classList.add('text-gray-900');
-			profile.classList.remove('bg-gray-900');			
-			profile.classList.add('bg-white');
-			
-		  }
+			if (body.classList.contains('text-gray-900')) {
+				toggle.innerHTML = "☀️";
+				body.classList.remove('text-gray-900');
+				body.classList.add('text-gray-100');
+				profile.classList.remove('bg-white');
+				profile.classList.add('bg-gray-900');
+			} else {
+				toggle.innerHTML = "🌙";
+				body.classList.remove('text-gray-100');
+				body.classList.add('text-gray-900');
+				profile.classList.remove('bg-gray-900');
+				profile.classList.add('bg-white');
+
+			}
 		});
-		
-    </script>
+
+	</script>
 	<script src="https://cdn.tailwindcss.com"></script>
 </body>
 

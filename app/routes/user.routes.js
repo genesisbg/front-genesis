@@ -5,6 +5,6 @@ import { validateToken } from "../middlewares/token.js";
 const user = Router();
 
 // Vista perfil de usuario
-user.get("/perfil", validateToken, userController.render);
+user.get("/perfil", validateToken, userController.render,);
 
 export default user;
