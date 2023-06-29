@@ -20,10 +20,10 @@ admin.post("/insertarUsuario", validateToken, validateAdmin, adminController.ins
 admin.get("/eliminarUsuario", validateToken, validateAdmin, adminController.eliminarUsuario)
 
 //vista de los libros para administration
-admin.get("/libros", validateToken, adminController.dashLibros);
-admin.post("/insertarLibros", validateToken, adminController.insertarLibros)
-admin.post("/editarLibros", validateToken, adminController.editarLibros)
-admin.get("/eliminarLibros", validateToken, adminController.eliminarLibros )
+admin.get("/libros", validateToken, validateAdmin, adminController.dashLibros);
+admin.post("/insertarLibros", validateToken, validateAdmin, adminController.insertarLibros)
+admin.post("/editarLibros", validateToken, validateAdmin, adminController.editarLibros)
+admin.get("/eliminarLibros", validateToken, validateAdmin, adminController.eliminarLibros )
 
 
 //vista de los prestamos para administration

@@ -163,6 +163,14 @@
             text: 'El documento ingresado ya se encuentra registrado!',
             })
         </script>
+    <% } else if (alertCase === "5") { %>
+        <script>
+            Swal.fire({
+            icon: 'error',
+            title: 'Usuario inactivo!',
+            text: 'Por favor contacta con un administrador',
+            })
+        </script>
     <% } else { %>
         <script>
             async function mostrarToast() {
