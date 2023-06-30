@@ -56,6 +56,8 @@ const prestamoLibro = async (req, res) => {
     "DNI_USUARIO": token.DNI_USUARIO
   }
 
+  console.log(datosPrestamo);
+
   // Valida si los datos necesarios para el prestamo  si existen
   if (datosPrestamo.FECHA_PRESTAMO && datosPrestamo.FECHA_DEVOLUCION) {
 

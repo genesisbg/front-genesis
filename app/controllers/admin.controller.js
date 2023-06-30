@@ -272,20 +272,21 @@ const dashLibros = async (req, res) => {
 }
 
 const insertarLibros = async (req, res) => {
-  if (req.body.COD_LIBRO) {
-
+ 
+  
+  if (true) {
+    console.log("Im here 2");
+     console.log(req.body);
     let datosLibro = {
-      "COD_LIBRO": req.body.COD_LIBRO,
       "SIPNOPSIS": req.body.SIPNOPSIS,
       "TITULO": req.body.TITULO,
       "FECHA_PUBLICACION": req.body.FECHA_PUBLICACION,
       "NUM_SERIE": req.body.NUM_SERIE,
       "EDITORIAL": req.body.EDITORIAL,
-      "GENERO": req.body.COD_GENERO,
+      "COD_GENERO": req.body.COD_GENERO,
       "NOM_AUTOR": req.body.NOM_AUTOR,
-      "IMAGEN": req.body.IMAGEN,
     }
-    if (datosLibro.COD_LIBRO && datosLibro.SIPNOPSIS && datosLibro.TITULO && datosLibro.FECHA_PUBLICACION && datosLibro.NUM_SERIE && datosLibro.EDITORIAL && datosLibro.GENERO && datosLibro.NOM_AUTOR && datosLibro.IMAGEN) {
+    if (datosLibro.SIPNOPSIS && datosLibro.TITULO && datosLibro.FECHA_PUBLICACION && datosLibro.NUM_SERIE && datosLibro.EDITORIAL && datosLibro.COD_GENERO && datosLibro.NOM_AUTOR ) {
       try {
         const url = 'http://localhost:3000/api/books';
         const option = {
@@ -299,7 +300,8 @@ const insertarLibros = async (req, res) => {
         await fetch(url, option)
           .then(response => response.json())
           .then(resRegistro => {
-            res.redirect('hola')
+            console.log(resRegistro);
+            res.redirect('/admin/libros')
             // if (resRegistro.message === "Usuario añadido") { // El usuario se registrò correctamente
             //   return res.redirect("/admin/usuarios?alert=1")
             // } else if (resRegistro.message === "El DNI ingresado ya existe") { // El usuario ingreso un documento que ya se encuentro registrado

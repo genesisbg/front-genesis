@@ -10,6 +10,7 @@ const index = async (req, res) => {
     let datosLibro = {};
     let session = false;
 
+    // Fetch de libros
     await fetch(url, options)
       .then((response) => response.json())
       .then(async (data) => {
@@ -38,12 +39,11 @@ const index = async (req, res) => {
         if (req.cookies.cookieBG) {
           session = true
         }
-
         datosLibro = convert;
 
-        res.render("index", { libros: datosLibro, session: session,generos: dataGenero });
       });
 
+      // Fetch de generos
     const urlGenero = `http://localhost:3000/api/genre/`;
     // let options = { method: "GET" };
     let dataGenero = {};
@@ -54,7 +54,9 @@ const index = async (req, res) => {
         dataGenero = datosG;
       })
 
+      //RENDERIZAR VISTA
     res.render("index", { libros: datosLibro, session: session, generos: dataGenero });
+    
   } catch (error) {
     console.error(error);
   }
