@@ -9,6 +9,7 @@ const index = async (req, res) => {
     let options = { method: "GET" };
     let datosLibro = {};
     let session = false;
+    let dataGenero=false;
 
     await fetch(url, options)
       .then((response) => response.json())
@@ -40,7 +41,7 @@ const index = async (req, res) => {
         }
 
         datosLibro = convert;
-        res.render("index", { libros: datosLibro, session: session });
+        res.render("index", { libros: datosLibro, session: session,generos: dataGenero });
       });
   } catch (error) {
     console.error(error);
@@ -54,7 +55,7 @@ const genero = (req, res) => {
     session = true
   };
 
-  res.render("pagina-genero.ejs",{session: session});
+  res.render("pagina-genero.ejs",{session: session, generos: dataGenero});
 };
 
 export const homeController = {
