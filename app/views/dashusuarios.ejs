@@ -76,6 +76,10 @@
                                     </svg>
                                     Add user
                                 </button>
+                                <button  class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-gray-900 bg-blue-600 border border-gray-300 rounded-lg hover:bg-blue-400 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-blue-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-700 dark:focus:ring-blue-700">
+                                    <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path></svg>
+                                    Export
+                                </button>
                             </div>
                         </div>
                         <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -148,7 +152,7 @@
                                                 </td>
                                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                     <button type="button" data-modal-toggle="edit-user-modal"
-                                                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bgblue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                                                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
                                                         <svg class="w-4 h-4 mr-2" fill="currentColor"
                                                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                             <path
@@ -160,6 +164,19 @@
                                                         </svg>
                                                         Edit user
                                                     </button>
+                                                    <a href="/admin/ban?id=<%= usuario.DNI_USUARIO %>&state=<%= usuario.ESTADO %>">
+                                                    <button type="button" data-modal-toggle="cambiar-estaado"
+                                                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                        <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <rect width="20" height="20" fill="white" fill-opacity="0.01"/>
+                                                            <path d="M18 31H38V5" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M30 21H10V43" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M44 11L38 5L32 11" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M16 37L10 43L4 37" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </svg>
+                                                            Estado
+                                                        </button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             <!-- Edit User Modal -->

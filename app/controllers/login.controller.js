@@ -64,15 +64,30 @@ const render = async (req, res) => {
         res.render("login", { alertCase: alertCase })
         break;
 
-      default:
+      // Registro exitoso 
+      case "3":
         res.render("login", { alertCase: alertCase })
+        break;
+
+      // DNI ya se encuentra registrado
+      case "4":
+        res.render("login", { alertCase: alertCase })
+        break;
+
+      // DNI ya se encuentra registrado
+      case "5":
+        res.render("login", { alertCase: alertCase })
+        break;
+
+      default:
+        res.render("login", { alertCase: false })
         break;
     }
   } else {
-    res.render("login", { alertCase: alertCase })
+    res.render("login", { alertCase: false })
   }
 
-}
+};
 
 const registro = async (req, res) => {
   // valida el sexo del usuario
@@ -139,12 +154,13 @@ const registro = async (req, res) => {
 
 const logout = (req, res) => {
   if (req.cookies.cookieBG) {
+    let alertCase = req.query.alert || "418";
     res.clearCookie('cookieBG')
-    res.redirect('/')
+    res.redirect(`/login?alert=${alertCase}`)
   }else{
     res.redirect('/')
   }
-}
+};
 
 export const loginController = {
   authentication,

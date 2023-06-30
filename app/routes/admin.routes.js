@@ -17,17 +17,19 @@ admin.get("/devolucion", validateToken, validateAdmin, adminController.devolucio
 //vista de usuarios para administration
 admin.get("/usuarios", validateToken, validateAdmin, adminController.dashUsuarios );
 admin.post("/insertarUsuario", validateToken, validateAdmin, adminController.insertarUsuario)
-admin.get("/eliminarUsuario", validateToken, validateAdmin, adminController.eliminarUsuario)
+admin.get("/ban", validateToken, validateAdmin, adminController.banUsuario)
 
 //vista de los libros para administration
-admin.get("/libros", validateToken, adminController.dashLibros);
-admin.post("/insertarLibros", validateToken, adminController.insertarLibros)
-admin.post("/editarLibros", validateToken, adminController.editarLibros)
-admin.get("/eliminarLibros", validateToken, adminController.eliminarLibros )
+admin.get("/libros", validateToken, validateAdmin, adminController.dashLibros);
+admin.post("/insertarLibros", validateToken, validateAdmin, adminController.insertarLibros)
+admin.post("/editarLibros", validateToken, validateAdmin, adminController.editarLibros)
+admin.get("/eliminarLibros", validateToken, validateAdmin, adminController.eliminarLibros )
 
 
 //vista de los prestamos para administration
 admin.get("/prestamos", validateToken, validateAdmin, adminController.dashPrestamos);
 admin.get("/eliminarPrestamos", validateToken, validateAdmin, adminController.eliminarPrestamos);
+
+/* admin.get("/generar", validateToken, validateAdmin, adminController.generatePdf) */
 
 export default admin;

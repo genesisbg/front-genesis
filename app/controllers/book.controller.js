@@ -33,6 +33,7 @@ const infoLibro = async (req, res) => {
   }
 };
 
+
 const prestamoLibro = async (req, res) => {
 
   const token = jwt.verify(req.cookies.cookieBG, process.env.SECRET_KEY)
@@ -72,7 +73,6 @@ const prestamoLibro = async (req, res) => {
               res.redirect('/libro/pagina')
           }
         })
-        
 
     } catch (error) {
       console.log(error);
@@ -82,16 +82,29 @@ const prestamoLibro = async (req, res) => {
 
 }
 
+
 const authPrestamo = (req, res) => {
   res.render("auth.ejs");
 };
 
 const confirmPrestamo = (req, res) => {
-  res.render("confirm.ejs");
+  let session = false;
+
+  if (req.cookies.cookieBG){
+    session = true
+  }
+
+  res.render("confirm.ejs", {session:session});
 };
 
 const prestamo = (req, res) => {
-  res.render("prestamo.ejs");
+  let session = false;
+
+  if (req.cookies.cookieBG){
+    session = true
+  }
+
+  res.render("prestamo.ejs", {session:session});
 };
 
 export const bookController = {

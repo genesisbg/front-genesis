@@ -1,6 +1,7 @@
 import { Buffer } from "node:buffer";
 import fetch from "node-fetch";
 import { fileTypeFromBuffer } from "file-type";
+import jwt from "jsonwebtoken";
 
 const index = async (req, res) => {
   try {
@@ -20,7 +21,7 @@ const index = async (req, res) => {
           let buffer = datosImagen ? Buffer.from(datosImagen) : null;
           // Si buffer no está vacio, se saca el mimetype con la funcion fileTypeFromBuffer();
           let mimeType = buffer ? await fileTypeFromBuffer(buffer) : null;
-          console.log(mimeType);
+          // console.log(mimeType);
 
           return {
             COD_LIBRO: element.COD_LIBRO,
