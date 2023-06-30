@@ -26,7 +26,7 @@ const infoLibro = async (req, res) => {
         session = true
       }
 
-    res.render("pagina.ejs", { infoLibro: infoLibro, session:session });
+    res.render("pagina.ejs", { infoLibro: infoLibro, session:session ,generos: dataGenero });
   } else {
     res.redirect("/");
   }
@@ -43,7 +43,7 @@ const confirmPrestamo = (req, res) => {
     session = true
   }
 
-  res.render("confirm.ejs", {session:session});
+  res.render("confirm.ejs", {session:session, generos: dataGenero });
 };
 
 const prestamo = (req, res) => {
@@ -53,7 +53,7 @@ const prestamo = (req, res) => {
     session = true
   }
 
-  res.render("prestamo.ejs", {session:session});
+  res.render("prestamo.ejs", {session:session,generos: dataGenero });
 };
 
 export const bookController = {
