@@ -12,5 +12,7 @@ book.get("/auth", validateToken, bookController.authPrestamo);
 book.get("/confirm", validateToken, bookController.confirmPrestamo);
 // vista para el prestamo
 book.get("/prestamo", validateToken, bookController.prestamo);
+//Vista para el prestamo realizado
+book.post("/prestamoLibro",validateToken, bookController.prestamoLibro);
 
 export default book;

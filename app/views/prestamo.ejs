@@ -16,9 +16,6 @@
 
       <title>Prestamo</title>
 </head>
-<header>
-  <%- include('./partials/navbar.ejs') %>
-</header>
 
 <body>
   <main class="row no-gutters">
@@ -39,27 +36,24 @@
 
     <article class="col-sm-6 col-md-8 pt-7" id="medio">
       <section class="resena">
-        <form action="sd" method="post">
-          <label for="" class="texto1"> Lugar del prestamo
-            <input type="text " placeholder="Type here" class="input input-bordered input-lg w-full max-w-xs"
+        <form action="prestamoLibro" method="post">
+          <label  class="texto1"> Fecha de Prestamo 
+            <input type="date" placeholder= "" name="FECHA_PRESTAMO" class="input input-bordered input-lg w-full max-w-xs"
               required />
           </label>
-          <label for="" class="texto1"> Genero
-            <input type="text " placeholder="Type here" class="input input-bordered input-lg w-full max-w-xs"
+          <label  class="texto1"> Fecha de devolucion del libro
+            <input type="date" placeholder="" name="FECHA_DEVOLUCION" class="input input-bordered input-lg w-full max-w-xs"
               required />
           </label>
+          <label  class="texto1 pt-7"> Acepto Terminos Y condiciones
+            <input type="checkbox" class="checkbox checkbox-accent" />
+          </label>
+          <button class="btn btn-block btn-info" type="submit">ENVIAR</button>
         </form>
 
         
-          <label for="" class="texto1 pt-7"> Acepto Terminos Y condiciones
-            <input type="checkbox" class="checkbox checkbox-accent" />
-          </label>
-          <button class="btn btn-block btn-info"><a href="/">ENVIAR</a> </button>
-
-        </form>
-
       </section>
-      <!-- ribbons and other content in here -->
+
 
 
 
