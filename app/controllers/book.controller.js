@@ -27,6 +27,7 @@ const infoLibro = async (req, res) => {
       session = true
     }
 
+
     res.render("pagina.ejs", { infoLibro: infoLibro, session: session });
   } else {
     res.redirect("/");
