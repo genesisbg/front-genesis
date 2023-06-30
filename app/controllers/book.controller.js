@@ -38,7 +38,6 @@ const prestamoLibro = async (req, res) => {
 
   const token = jwt.verify(req.cookies.cookieBG, process.env.SECRET_KEY)
 
-
   let datosPrestamo = {
     "FECHA_PRESTAMO": req.body.FECHA_PRESTAMO,
     "FECHA_DEVOLUCION": req.body.FECHA_DEVOLUCION,
@@ -65,12 +64,10 @@ const prestamoLibro = async (req, res) => {
 
           console.log(resPrestamo);
 
-          if (resPrestamo.message === "Prestamo Realizado") { // El Prestamo se registrò correctamente
-
-                res.redirect('/prestamoLibro'); 
-
-          } else {
-              res.redirect('/libro/pagina')
+          if (resPrestamo.message === "Prestamo  Realizado") { // El Prestamo se registrò correctamente
+            res.redirect("/")
+          } else{
+            res.redirect("/libro/pagina");
           }
         })
 
@@ -82,7 +79,6 @@ const prestamoLibro = async (req, res) => {
 
 }
 
-
 const authPrestamo = (req, res) => {
   res.render("auth.ejs");
 };
@@ -90,21 +86,21 @@ const authPrestamo = (req, res) => {
 const confirmPrestamo = (req, res) => {
   let session = false;
 
-  if (req.cookies.cookieBG){
+  if (req.cookies.cookieBG) {
     session = true
   }
 
-  res.render("confirm.ejs", {session:session});
+  res.render("confirm.ejs", { session: session });
 };
 
 const prestamo = (req, res) => {
   let session = false;
 
-  if (req.cookies.cookieBG){
+  if (req.cookies.cookieBG) {
     session = true
   }
 
-  res.render("prestamo.ejs", {session:session});
+  res.render("prestamo.ejs", { session: session });
 };
 
 export const bookController = {
