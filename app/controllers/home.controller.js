@@ -9,7 +9,6 @@ const index = async (req, res) => {
     let options = { method: "GET" };
     let datosLibro = {};
     let session = false;
-    let dataGenero=false;
 
     await fetch(url, options)
       .then((response) => response.json())
@@ -36,26 +35,47 @@ const index = async (req, res) => {
           };
         }));
 
-        if (req.cookies.cookieBG){
+        if (req.cookies.cookieBG) {
           session = true
         }
 
         datosLibro = convert;
-        res.render("index", { libros: datosLibro, session: session,generos: dataGenero  });
       });
+
+    const urlGenero = `http://localhost:3000/api/genre/`;
+    // let options = { method: "GET" };
+    let dataGenero = {};
+
+    await fetch(urlGenero, options)
+      .then((response) => response.json())
+      .then((datosG) => {
+        dataGenero = datosG;
+      })
+
+    res.render("index", { libros: datosLibro, session: session, generos: dataGenero });
   } catch (error) {
     console.error(error);
   }
 };
 
-const genero = (req, res) => {
+const genero = async (req, res) => {
   let session = false;
-  
-  if (req.cookies.cookieBG){
+
+  if (req.cookies.cookieBG) {
     session = true
   };
 
-  res.render("pagina-genero.ejs",{session: session, generos: dataGenero});
+  const urlGenero = `http://localhost:3000/api/genre/`;
+  let options = { method: "GET" };
+  let dataGenero = {};
+
+  await fetch(urlGenero, options)
+    .then((response) => response.json())
+    .then((datosG) => {
+      dataGenero = datosG;
+    })
+
+  res.render("pagina-genero.ejs", { session: session, generos: dataGenero});
 };
 
 export const homeController = {

@@ -27,8 +27,16 @@ const infoLibro = async (req, res) => {
       session = true
     }
 
+    const urlGenero = `http://localhost:3000/api/genre/`;
+    let dataGenero = {};
 
-    res.render("pagina.ejs", { infoLibro: infoLibro, session: session });
+    await fetch(urlGenero, options)
+      .then((response) => response.json())
+      .then((datosG) => {
+        dataGenero = datosG;
+      })
+
+    res.render("pagina.ejs", { infoLibro: infoLibro, session: session,  generos: dataGenero});
   } else {
     res.redirect("/");
   }
@@ -99,8 +107,8 @@ const authPrestamo = async (req, res) => {
         .then(response => response.json())
         .then(loanHeader => dataHeader = loanHeader)
 
-     
-     
+
+
     } catch (error) {
 
     }
@@ -109,17 +117,27 @@ const authPrestamo = async (req, res) => {
   }
 };
 
-const confirmPrestamo = (req, res) => {
+const confirmPrestamo = async (req, res) => {
   let session = false;
 
   if (req.cookies.cookieBG) {
     session = true
   }
 
-  res.render("confirm.ejs", { session: session });
+  const urlGenero = `http://localhost:3000/api/genre/`;
+  let options = { method: "GET" };
+  let dataGenero = {};
+
+  await fetch(urlGenero, options)
+    .then((response) => response.json())
+    .then((datosG) => {
+      dataGenero = datosG;
+    })
+
+  res.render("confirm.ejs", { session: session,  generos: dataGenero});
 };
 
-const prestamo = (req, res) => {
+const prestamo = async(req, res) => {
   let COD_LIBRO = req.query.COD_LIBRO || false;
 
   let session = false;
@@ -128,7 +146,17 @@ const prestamo = (req, res) => {
     session = true
   }
 
-  res.render("prestamo.ejs", { session: session, COD_LIBRO: COD_LIBRO });
+  const urlGenero = `http://localhost:3000/api/genre/`;
+  let options = { method: "GET" };
+  let dataGenero = {};
+
+  await fetch(urlGenero, options)
+    .then((response) => response.json())
+    .then((datosG) => {
+      dataGenero = datosG;
+    })
+
+  res.render("prestamo.ejs", { session: session, COD_LIBRO: COD_LIBRO, generos: dataGenero});
 };
 
 export const bookController = {

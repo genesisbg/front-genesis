@@ -4,14 +4,63 @@ import PDFDocument from "pdfkit";
 import 'pdfkit-table';
 import XLSX from "xlsx";
 
-
 const dash = (req, res) => {
   res.render("dash.ejs");
 }
 
 const actualizar = (req, res) => {
-  res.render("actualizarusuario.ejs");
+  let cod_usuario = req.query.cod
+  res.render("actualizarusuario.ejs",{cod:cod_usuario});
 }
+const update = async (req, res) => {
+  let cod_usuario = req.query.cod
+  if (cod_usuario) {
+
+    let datosUsuario = {
+      "NOM_USUARIO": req.body.NOM_USUARIO,
+      "APELL_USUARIO": req.body.APELL_USUARIO,
+      "CORREO": req.body.CORREO_USUARIO,
+      "CONTRASENA": req.body.PASSWORD,
+      "FECHA_NAC": req.body.FECHA_NACIMIENTO,
+      "SEXO": req.body.sexo,
+      "ESTADO": "ACTIVO",
+      "COD_ROL": req.body.rol
+    }
+    if (datosUsuario.NOM_USUARIO && datosUsuario.APELL_USUARIO && datosUsuario.CORREO && datosUsuario.CONTRASENA && datosUsuario.FECHA_NAC && datosUsuario.SEXO && datosUsuario.ESTADO && datosUsuario.COD_ROL) {
+      try {
+        const url = `http://localhost:3000/api/user/${cod_usuario}`;
+        const option = {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(datosUsuario)
+        }
+
+        await fetch(url, option)
+          .then(response => response.json())
+          .then(resActualiar => {
+
+            console.log(resActualiar)
+
+            // if (resActualiar.message === "Usuario añadido") { // El usuario se registrò correctamente
+            //   return res.redirect("/admin/usuarios?alert=1")
+            // } else if (resActualiar.message === "El DNI ingresado ya existe") { // El usuario ingreso un documento que ya se encuentro registrado
+            //   return res.redirect("/admin/usuarios?alert=2")
+            // }
+          })
+      } catch (error) {
+        console.log(error);
+      }
+      // res.send(datosUsuario)
+    } else {
+      return res.redirect("/admin/usuarios?alert=0")
+    }
+  } else {
+    res.redirect("/admin/usuarios?alert=0")
+  }
+};
+
 const actualizarLibro = (req, res) => {
   res.render("actualizarLibro.ejs");
 }
@@ -350,8 +399,6 @@ const dashPrestamos = async (req, res) => {
       .then((response) => response.json())
       .then((datosP) => {
         dataPrestamo = datosP;
-        console.log(dataPrestamo);
-
       })
     res.render("dashprestamos", { prestamos: dataPrestamo });
   } catch (error) {
@@ -653,6 +700,7 @@ const generatePDFTableP = (doc, prestam) => {
 export const adminController = {
   dash,
   actualizar,
+  update,
   actualizarLibro,
   devolucion,
   dashUsuarios,

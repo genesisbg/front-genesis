@@ -9,7 +9,6 @@ const admin = Router();
 admin.get("/", validateToken, validateAdmin, adminController.dash);
 
 //vista para el formulario para agregar libros
-admin.get("/actualizar", validateToken, validateAdmin, adminController.actualizar);
 admin.get("/actualizarLibro", validateToken, validateAdmin, adminController.actualizarLibro)
 
 //vista para el formulario la devolucion de libros
@@ -17,6 +16,8 @@ admin.get("/devolucion", validateToken, validateAdmin, adminController.devolucio
 
 //vista de usuarios para administration
 admin.get("/usuarios", validateToken, validateAdmin, adminController.dashUsuarios );
+admin.get("/actualizar", validateToken, validateAdmin, adminController.actualizar);
+admin.post("/updateUser", validateToken, validateAdmin, adminController.update);
 admin.post("/insertarUsuario", validateToken, validateAdmin, adminController.insertarUsuario)
 admin.get("/ban", validateToken, validateAdmin, adminController.banUsuario)
 

@@ -11,6 +11,6 @@ export const validateState = (req, res, next) => {
         }
     } catch (error) {
         // console.error(error);
-        res.redirect("/");
+        res.redirect("/logout?alert=5");
     }
 };

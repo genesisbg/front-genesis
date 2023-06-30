@@ -22,9 +22,9 @@
   <div class="flex-1">
     <select class="select select-info w-full max-w-xs" onchange="nav(this.value)">
       <option disabled selected>Genero</option>
-      <option value="/pagina-genero">Literatura Clasica</option>
-      <option>Terror</option>
-      <option>Misterio</option>
+      <% generos.forEach(generos => { %>
+      <option value="genero?COD_GENERO=<%= generos.COD_GENERO %>"><%= generos.NOMBRE %></option>
+      <% }) %>
     </select>
   </div>
 
