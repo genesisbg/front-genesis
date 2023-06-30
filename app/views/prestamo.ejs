@@ -36,7 +36,7 @@
 
     <article class="col-sm-6 col-md-8 pt-7" id="medio">
       <section class="resena">
-        <form action="prestamoLibro" method="post">
+        <form action="prestamoLibro?COD_LIBRO=<%= COD_LIBRO %>" method="post">
           <label  class="texto1"> Fecha de Prestamo 
             <input type="date" placeholder= "" name="FECHA_PRESTAMO" class="input input-bordered input-lg w-full max-w-xs"
               required />

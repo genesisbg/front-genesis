@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import jwt from "jsonwebtoken";
+import { response } from "express";
 
 const infoLibro = async (req, res) => {
   if (req.query.COD_LIBRO) {
@@ -36,6 +37,8 @@ const infoLibro = async (req, res) => {
 
 const prestamoLibro = async (req, res) => {
 
+  let COD_LIBRO = req.query.COD_LIBRO || false;
+
   const token = jwt.verify(req.cookies.cookieBG, process.env.SECRET_KEY)
 
 
@@ -65,46 +68,84 @@ const prestamoLibro = async (req, res) => {
 
           console.log(resPrestamo);
 
-          if (resPrestamo.message === "Prestamo Realizado") { // El Prestamo se registrò correctamente
-
-                res.redirect('/prestamoLibro'); 
-
+          if (resPrestamo.message === "Prestamo  Realizado") { // El Prestamo se registrò   correctamente
+            res.redirect(`detalle?COD_LIBRO=${COD_LIBRO}&FECHA_PRESTAMO=${req.body.FECHA_PRESTAMO}&FECHA_DEVOLUCION=${req.body.FECHA_DEVOLUCION}`);
           } else {
-              res.redirect('/libro/pagina')
+            res.redirect('/libro/pagina');
           }
         })
 
     } catch (error) {
       console.log(error);
     }
-
   }
-
 }
 
+const detalle = (req, res) => {
+  res.send(req.query)
+};
 
-const authPrestamo = (req, res) => {
-  res.render("auth.ejs");
+
+const authPrestamo = async(req, res) => {
+  
+  let COD_LIBRO = req.query.COD_LIBRO
+  let FECHA_PRESTAMO = req.query.FECHA_PRESTAMO
+  let FECHA_DEVOLUCION = req.query.FECHA_DEVOLUCION
+
+  if (COD_LIBRO && FECHA_PRESTAMO && FECHA_DEVOLUCION) {
+    try {
+      
+      let url = "http://localhost:3000/api/loan-header/"
+      
+      let options = {
+        method: "GET"
+      }
+      let dataHeader = {}
+      await fetch(url, options) 
+      .then(response => response.json())
+      .then(loanHeader => dataHeader = loanHeader)
+      
+      
+      const fechaRegex = /^\d{2}-\d{2}-\d{4}$/;
+
+      if (fechaRegex.test === FECHA_PRESTAMO) {
+       
+        
+       
+      }
+
+      
+      
+    }catch (error) {
+    console.log(error);
+    }
+
+  }else{
+    res.redirect('/')
+  } 
+  
 };
 
 const confirmPrestamo = (req, res) => {
   let session = false;
 
-  if (req.cookies.cookieBG){
+  if (req.cookies.cookieBG) {
     session = true
   }
 
-  res.render("confirm.ejs", {session:session});
+  res.render("confirm.ejs", { session: session });
 };
 
 const prestamo = (req, res) => {
+  let COD_LIBRO = req.query.COD_LIBRO || false;
+  
   let session = false;
 
-  if (req.cookies.cookieBG){
+  if (req.cookies.cookieBG) {
     session = true
   }
 
-  res.render("prestamo.ejs", {session:session});
+  res.render("prestamo.ejs", { session: session,  COD_LIBRO: COD_LIBRO });
 };
 
 export const bookController = {
@@ -112,5 +153,6 @@ export const bookController = {
   authPrestamo,
   confirmPrestamo,
   prestamo,
-  prestamoLibro
+  prestamoLibro,
+  detalle
 };

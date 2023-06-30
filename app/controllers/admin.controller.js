@@ -351,7 +351,7 @@ const dashPrestamos = async (req, res) => {
   } catch (error) {
     res.render("dashprestamos", { prestamos: dataPrestamo });
   }
-  // res.render("dashprestamos",{prestamos: dataPrestamo});
+  
 }
 
 const eliminarPrestamos = async (req, res) => {
