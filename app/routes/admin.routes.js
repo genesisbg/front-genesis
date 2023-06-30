@@ -29,6 +29,4 @@ admin.get("/eliminarLibros", validateToken, validateAdmin, adminController.elimi
 admin.get("/prestamos", validateToken, validateAdmin, adminController.dashPrestamos);
 admin.get("/eliminarPrestamos", validateToken, validateAdmin, adminController.eliminarPrestamos);
 
-// admin.get("/generar", validateToken, validateAdmin, adminController.pdf)
-
 export default admin;

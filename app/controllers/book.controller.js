@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import jwt from "jsonwebtoken";
 
 const infoLibro = async (req, res) => {
   if (req.query.COD_LIBRO) {
@@ -22,15 +23,65 @@ const infoLibro = async (req, res) => {
         console.log(err);
       });
 
-      if (req.cookies.cookieBG){
-        session = true
-      }
+    if (req.cookies.cookieBG) {
+      session = true
+    }
 
-    res.render("pagina.ejs", { infoLibro: infoLibro, session:session });
+    res.render("pagina.ejs", { infoLibro: infoLibro, session: session });
   } else {
     res.redirect("/");
   }
 };
+
+
+const prestamoLibro = async (req, res) => {
+
+  const token = jwt.verify(req.cookies.cookieBG, process.env.SECRET_KEY)
+
+
+  let datosPrestamo = {
+    "FECHA_PRESTAMO": req.body.FECHA_PRESTAMO,
+    "FECHA_DEVOLUCION": req.body.FECHA_DEVOLUCION,
+    "ESTADO": 1,
+    "DNI_USUARIO": token.DNI_USUARIO
+  }
+
+  // Valida si los datos necesarios para el prestamo  si existen
+  if (datosPrestamo.FECHA_PRESTAMO && datosPrestamo.FECHA_DEVOLUCION) {
+
+    try {
+      const url = 'http://localhost:3000/api/loan-header';
+      const option = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datosPrestamo)
+      }
+
+      await fetch(url, option)
+        .then(response => response.json())
+        .then(resPrestamo => {
+
+          console.log(resPrestamo);
+
+          if (resPrestamo.message === "Prestamo Realizado") { // El Prestamo se registrò correctamente
+
+                res.redirect('/prestamoLibro'); 
+
+          } else {
+              res.redirect('/libro/pagina')
+          }
+        })
+
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
+}
+
 
 const authPrestamo = (req, res) => {
   res.render("auth.ejs");
@@ -60,5 +111,6 @@ export const bookController = {
   infoLibro,
   authPrestamo,
   confirmPrestamo,
-  prestamo
+  prestamo,
+  prestamoLibro
 };
