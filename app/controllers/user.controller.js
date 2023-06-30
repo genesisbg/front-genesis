@@ -19,16 +19,10 @@ const render = async (req, res) => {
             }
         });
 
-
         let filtered = prestamosUsuario.filter(input =>{
             return input !== undefined;
         });
 
-        console.log(filtered)
-
-
-        // console.log(dataPrestamo)
-        // console.log(token)
         res.render("perfil.ejs", { prestamosS: filtered });
     } catch (error) {
         console.log(error);
