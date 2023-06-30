@@ -42,9 +42,14 @@ const perfilPrestamos = async (req, res) => {
 
     // res.render("dashprestamos",{prestamos: dataPrestamo});
   }
+  const pqr = async (req, res) => {
+
+    res.render("pqr.ejs")
+  }
 
 export const userController = {
 
     render,
-    perfilPrestamos,  
+    perfilPrestamos,
+    pqr  
 };

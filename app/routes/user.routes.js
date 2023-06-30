@@ -8,4 +8,5 @@ const user = Router();
 // Vista perfil de usuario
 
 user.get("/perfil", validateToken, userController.render,);
+user.get("/pqr", validateToken, userController.pqr)
 export default user;
