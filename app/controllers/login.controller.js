@@ -137,7 +137,7 @@ const registro = async (req, res) => {
       await fetch(url, option)
         .then(response => response.json())
         .then(resRegistro => {
-          
+
           if (resRegistro.message === "Usuario añadido") { // El usuario se registrò correctamente
             return res.redirect("/login?alert=3")
           } else if (resRegistro.message === "El DNI ingresado ya existe") { // El usuario ingreso un documento que ya se encuentro registrado
@@ -157,7 +157,7 @@ const logout = (req, res) => {
     let alertCase = req.query.alert || "418";
     res.clearCookie('cookieBG')
     res.redirect(`/login?alert=${alertCase}`)
-  }else{
+  } else {
     res.redirect('/')
   }
 };

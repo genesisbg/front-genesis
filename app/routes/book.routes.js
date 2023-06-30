@@ -12,10 +12,12 @@ book.get("/auth", validateToken, validateState, bookController.authPrestamo);
 // vista para la confirmacion de prestamo
 book.get("/confirm", validateToken, validateState, bookController.confirmPrestamo);
 // vista para el prestamo
-book.get("/prestamo", validateToken, bookController.prestamo);
+book.get("/prestamo", validateToken, validateState, bookController.prestamo);
 //Vista para el prestamo realizado
+
 book.post("/prestamoLibro",validateToken, bookController.prestamoLibro);
 book.get("/detalle",validateToken, bookController.detalle);
+
 
 
 

@@ -152,7 +152,7 @@ const banUsuario = async (req, res) => {
         body: JSON.stringify(banData)
       }
 
-        await fetch(url, option)
+      await fetch(url, option)
         .then(response => response.json())
         .then(resBan => {
 
@@ -358,7 +358,7 @@ const dashPrestamos = async (req, res) => {
   } catch (error) {
     res.render("dashprestamos", { prestamos: dataPrestamo });
   }
-  // res.render("dashprestamos",{prestamos: dataPrestamo});
+
 }
 
 const eliminarPrestamos = async (req, res) => {
@@ -394,7 +394,7 @@ const getUser = async () => {
 };
 
 
- const pdf = async (req, res) => {
+const pdf = async (req, res) => {
   try {
     const users = await getUser(); // Función para obtener los productos de la API
 
@@ -414,13 +414,13 @@ const getUser = async () => {
     // Establecer la fecha actual
     const currentDate = new Date().toLocaleDateString();
     const currentTime = new Date().toLocaleTimeString();
-    doc.fontSize(12).text(`Fecha de creación del reporte: ${currentDate}- ${currentTime}` ,{ align: "center", margin: [0, 20] });
+    doc.fontSize(12).text(`Fecha de creación del reporte: ${currentDate}- ${currentTime}`, { align: "center", margin: [0, 20] });
 
     const token = jwt.verify(req.cookies.cookieBG, process.env.SECRET_KEY)
 
     doc.fontSize(12).text(token.NOM_USUARIO, { align: "center" });
     // Generar tabla de usuarios
-    generatePDFTable(doc, users );
+    generatePDFTable(doc, users);
 
 
 
@@ -460,35 +460,35 @@ const generatePDFTable = (doc, users) => {
     doc.text(header, columnIndex * 100 + 50, y);
   });
   if (users && Array.isArray(users)) {
-  // Establecer estilos para las filas de la tabla
-  doc.font("Helvetica").fontSize(10);
+    // Establecer estilos para las filas de la tabla
+    doc.font("Helvetica").fontSize(10);
 
-  // Dibujar las filas de la tabla
-  users.forEach((user,  rowIndex) => { // Cambiar el nombre de la variable 'user' en el bucle
-    y += 20; // Aumentar la posición vertical para cada fila
+    // Dibujar las filas de la tabla
+    users.forEach((user, rowIndex) => { // Cambiar el nombre de la variable 'user' en el bucle
+      y += 20; // Aumentar la posición vertical para cada fila
 
-    const rowData = [
-      user.DNI_USUARIO,
-      user.NOM_USUARIO,
-      user.APELL_USUARIO,
-      user.ESTADO,
-      rolText[user.COD_ROL],
-    ];
+      const rowData = [
+        user.DNI_USUARIO,
+        user.NOM_USUARIO,
+        user.APELL_USUARIO,
+        user.ESTADO,
+        rolText[user.COD_ROL],
+      ];
 
-    rowData.forEach((data, columnIndex) => {
-      const cellWidth = 100;
-      const cellHeight = 20;
+      rowData.forEach((data, columnIndex) => {
+        const cellWidth = 100;
+        const cellHeight = 20;
 
-      const textOptions = {
-        width: cellWidth,
-        height: cellHeight,
-        lineBreak: false
-      };
+        const textOptions = {
+          width: cellWidth,
+          height: cellHeight,
+          lineBreak: false
+        };
 
-      doc.text(data, columnIndex * 100 + 50, y, textOptions);
+        doc.text(data, columnIndex * 100 + 50, y, textOptions);
+      });
     });
-  });
-}
+  }
 };
 
 
@@ -500,7 +500,7 @@ const generatePDFTable = (doc, users) => {
 const excel = async (req, res) => {
 
   try {
-    const user  = await getUser(); // Función para obtener los productos de la API
+    const user = await getUser(); // Función para obtener los productos de la API
 
     // Crear una nueva hoja de cálculo
     const workbook = XLSX.utils.book_new();
@@ -536,7 +536,7 @@ const getPrestamo = async () => {
 };
 
 
- const pdfPrestamo = async (req, res) => {
+const pdfPrestamo = async (req, res) => {
   try {
     const prestam = await getPrestamo(); // Función para obtener los productos de la API
 
@@ -556,13 +556,13 @@ const getPrestamo = async () => {
     // Establecer la fecha actual
     const currentDate = new Date().toLocaleDateString();
     const currentTime = new Date().toLocaleTimeString();
-    doc.fontSize(12).text(`Fecha de creación del reporte: ${currentDate}- ${currentTime}` ,{ align: "center", margin: [0, 20] });
+    doc.fontSize(12).text(`Fecha de creación del reporte: ${currentDate}- ${currentTime}`, { align: "center", margin: [0, 20] });
 
     const token = jwt.verify(req.cookies.cookieBG, process.env.SECRET_KEY)
 
     doc.fontSize(12).text(token.NOM_USUARIO, { align: "center" });
     // Generar tabla de usuarios
-    generatePDFTableP(doc, prestam );
+    generatePDFTableP(doc, prestam);
 
 
 
@@ -601,41 +601,41 @@ const generatePDFTableP = (doc, prestam) => {
     doc.text(header, columnIndex * 100 + 50, y);
   });
   if (prestam && Array.isArray(prestam)) {
-  // Establecer estilos para las filas de la tabla
-  doc.font("Helvetica").fontSize(10);
+    // Establecer estilos para las filas de la tabla
+    doc.font("Helvetica").fontSize(10);
 
-  // Dibujar las filas de la tabla
-  prestam.forEach((prestamo,  rowIndex) => { // Cambiar el nombre de la variable 'user' en el bucle
-    y += 20; // Aumentar la posición vertical para cada fila
+    // Dibujar las filas de la tabla
+    prestam.forEach((prestamo, rowIndex) => { // Cambiar el nombre de la variable 'user' en el bucle
+      y += 20; // Aumentar la posición vertical para cada fila
 
-    const rowData = [
-      prestamo.COD_ENC_PRESTAMO,
-      prestamo.FECHA_PRESTAMO,
-      prestamo.FECHA_DEVOLUCION,
-      estadoText[prestamo.ESTADO],
-      prestamo.DNI_USUARIO,
+      const rowData = [
+        prestamo.COD_ENC_PRESTAMO,
+        prestamo.FECHA_PRESTAMO,
+        prestamo.FECHA_DEVOLUCION,
+        estadoText[prestamo.ESTADO],
+        prestamo.DNI_USUARIO,
 
-    ];
+      ];
 
-    rowData.forEach((data, columnIndex) => {
-      const cellWidth = 100;
-      const cellHeight = 20;
+      rowData.forEach((data, columnIndex) => {
+        const cellWidth = 100;
+        const cellHeight = 20;
 
-      const textOptions = {
-        width: cellWidth,
-        height: cellHeight,
-        lineBreak: false
-      };
+        const textOptions = {
+          width: cellWidth,
+          height: cellHeight,
+          lineBreak: false
+        };
 
-      doc.text(data, columnIndex * 100 + 50, y, textOptions);
+        doc.text(data, columnIndex * 100 + 50, y, textOptions);
+      });
     });
-  });
-}
+  }
 };
 
- const excelP = async (req, res) => {
+const excelP = async (req, res) => {
   try {
-    const prestamos  = await getPrestamo(); // Función para obtener los productos de la API
+    const prestamos = await getPrestamo(); // Función para obtener los productos de la API
 
     // Crear una nueva hoja de cálculo
     const workbook = XLSX.utils.book_new();
