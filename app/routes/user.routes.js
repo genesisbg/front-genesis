@@ -8,4 +8,6 @@ const user = Router();
 // Vista perfil de usuario
 
 user.get("/perfil", validateToken, userController.render,);
+user.get("/pdfPrestamo", validateToken,userController.pdfPrestamo)
+user.get("/excelP", validateToken,  userController.excelP)
 export default user;

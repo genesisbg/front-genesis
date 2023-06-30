@@ -3,6 +3,7 @@ import fetch from "node-fetch";
 import PDFDocument from "pdfkit";
 import 'pdfkit-table';
 import XLSX from "xlsx";
+import fs from "fs";
 
 
 const dash = (req, res) => {
@@ -399,8 +400,15 @@ const getUser = async () => {
 
     // Crear un nuevo documento PDF
     const doc = new PDFDocument();
+    const logoPath = 'public/img/ole.png'; // Reemplaza con la ruta adecuada de tu archivo de imagen
+    const logoImage = fs.readFileSync(logoPath);
 
     // Establecer encabezado
+    doc.image(logoImage, {
+      fit: [100, 100], // Tamaño del logo en el PDF
+      align: 'center', // Alineación del logo en el PDF
+      valign: 'top', // Alineación vertical del logo en el PDF
+    });
     doc.font("Helvetica-Bold").fontSize(18).text("Reporte de Usuarios", { align: "center" });
 
     // Establecer la fecha actual
@@ -534,8 +542,15 @@ const getPrestamo = async () => {
 
     // Crear un nuevo documento PDF
     const doc = new PDFDocument();
+    const logoPath = 'public/img/ole.png'; // Reemplaza con la ruta adecuada de tu archivo de imagen
+    const logoImage = fs.readFileSync(logoPath);
 
     // Establecer encabezado
+    doc.image(logoImage, {
+      fit: [100, 100], // Tamaño del logo en el PDF
+      align: 'center', // Alineación del logo en el PDF
+      valign: 'top', // Alineación vertical del logo en el PDF
+    });
     doc.font("Helvetica-Bold").fontSize(18).text("Reporte de Prestamos", { align: "center" });
 
     // Establecer la fecha actual
@@ -597,9 +612,9 @@ const generatePDFTableP = (doc, prestam) => {
       prestamo.COD_ENC_PRESTAMO,
       prestamo.FECHA_PRESTAMO,
       prestamo.FECHA_DEVOLUCION,
-      prestamo.ESTADO,
+      estadoText[prestamo.ESTADO],
       prestamo.DNI_USUARIO,
-      estadoText[prestamo.ESTADO]
+
     ];
 
     rowData.forEach((data, columnIndex) => {

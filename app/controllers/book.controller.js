@@ -64,7 +64,7 @@ const prestamoLibro = async (req, res) => {
         .then(response => response.json())
         .then(resPrestamo => {
           if (resPrestamo.message === "Prestamo  Realizado") { // El Prestamo se registrò correctamente
-            res.redirect(`detalle?COD_LIBRO=${COD_LIBRO}&FECHA_PRESTAMO=${req.body.FECHA_PRESTAMO}&FECHA_DEVOLUCION=${req.body.FECHA_DEVOLUCION}`)
+            res.redirect(`/libro/pagina`)
           } else {
             res.redirect("/libro/pagina");
           }

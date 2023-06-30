@@ -41,7 +41,7 @@ const index = async (req, res) => {
         }
 
         datosLibro = convert;
-        res.render("index", { libros: datosLibro, session: session,generos: dataGenero  });
+        res.render("index", { libros: datosLibro, session: session,generos: dataGenero });
       });
   } catch (error) {
     console.error(error);

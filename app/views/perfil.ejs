@@ -44,11 +44,16 @@
 						Pagina Principal</a> </div>
 			</div>
 			<div class="mt-20 text-center border-b pb-12">
-				<h1 class="text-4xl font-medium text-gray-700">Jessica Jones, <span
-						class="font-light text-gray-500">27</span></h1>
-				<p class="font-light text-gray-600 mt-3">Bucharest, Romania</p>
-				<p class="mt-8 text-gray-500">Solution Manager - Creative Tim Officer</p>
-				<p class="mt-2 text-gray-500">University of Computer Science</p>
+				<button type="button" id="exportPdfButton" onclick="window.location.href = '/user/pdfPrestamo'"
+                                    class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10"/><path d="M16 12l-4 4-4-4M12 8v7"/></svg>
+                                    Exportar en PDF
+                                </button>
+                                <button type="button" id="exportExcelButton" onclick="window.location.href = '/user/excelP'"
+                                    class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="10"/><path d="M16 12l-4 4-4-4M12 8v7"/></svg>
+                                    Exportar por excel
+                                </button>	
 			</div>
 			<div class="mt-12 flex flex-col justify-center">
 				<!-- component -->
@@ -60,7 +65,7 @@
 								<tr>
 									<th class="p-3">Codigo del prestamo</th>
 									<th class="p-3 text-left">Fecha de Prestamo</th>
-									<th class="p-3 text-left">Titulo</th>
+									<th class="p-3 text-left">Estado</th>
 									<th class="p-3 text-left">Fecha de devolucion</th>
 								</tr>
 							</thead>
