@@ -40,7 +40,7 @@ const render = async (req, res) => {
 
 const perfilPrestamos = async (req, res) => {
 
-    // res.render("dashprestamos",{prestamos: dataPrestamo});
+    
   }
 
 export const userController = {

@@ -66,7 +66,7 @@ const prestamoLibro = async (req, res) => {
         .then(resPrestamo => {
 
           if (resPrestamo.message === "Prestamo  Realizado") { // El Prestamo se registrò correctamente
-            res.redirect(`/libro/pagina`)
+            res.redirect(`detalle?COD_LIBRO=${COD_LIBRO}&FECHA_PRESTAMO=${req.body.FECHA_PRESTAMO}&FECHA_DEVOLUCION=${req.body.FECHA_DEVOLUCION}`)
           } else {
             res.redirect("/libro/pagina");
 
@@ -100,29 +100,29 @@ const authPrestamo = async (req, res) => {
       }
       let dataHeader = {}
 
-      await fetch(url, options) 
-      .then(response => response.json())
-      .then(loanHeader => dataHeader = loanHeader)
-      
-      
+      await fetch(url, options)
+        .then(response => response.json())
+        .then(loanHeader => dataHeader = loanHeader)
+
+
       const fechaRegex = /^\d{2}-\d{2}-\d{4}$/;
 
       if (fechaRegex.test === FECHA_PRESTAMO) {
-       
-        
-       
+
+          
+
       }
 
-      
-      
-    }catch (error) {
-    console.log(error);
+
+
+    } catch (error) {
+      console.log(error);
     }
 
-  }else{
+  } else {
     res.redirect('/')
-  } 
-  
+  }
+
 
 };
 
