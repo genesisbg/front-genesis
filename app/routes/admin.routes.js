@@ -26,14 +26,15 @@ admin.post("/insertarLibros", validateToken, validateAdmin, adminController.inse
 admin.post("/editarLibros", validateToken, validateAdmin, adminController.editarLibros)
 admin.get("/eliminarLibros", validateToken, validateAdmin, adminController.eliminarLibros )
 
-
 //vista de los prestamos para administration
 admin.get("/prestamos", validateToken, validateAdmin, adminController.dashPrestamos);
 admin.get("/eliminarPrestamos", validateToken, validateAdmin, adminController.eliminarPrestamos);
+
 
 admin.get("/pdf", validateToken, validateAdmin, adminController.pdf)
 admin.get("/excel", validateToken, validateAdmin, adminController.excel)
 
 admin.get("/pdfPrestamo", validateToken, validateAdmin, adminController.pdfPrestamo)
 admin.get("/excelP", validateToken, validateAdmin, adminController.excelP)
+
 export default admin;

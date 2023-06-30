@@ -379,7 +379,10 @@ const eliminarPrestamos = async (req, res) => {
     })
   return res.redirect("/admin/prestamos");
 }
+
 const getUser = async () => {
+
+
   try {
     const response = await fetch("http://localhost:3000/api/user");
     const user = await response.json();
@@ -480,7 +483,14 @@ const generatePDFTable = (doc, users) => {
 }
 };
 
- const excel = async (req, res) => {
+
+
+/**
+ * Genera un reporte en formato Excel de los productos obtenidos de la API.
+ * El reporte se genera en un archivo de Excel y se descarga como adjunto en la respuesta HTTP.
+ */
+const excel = async (req, res) => {
+
   try {
     const user  = await getUser(); // Función para obtener los productos de la API
 
