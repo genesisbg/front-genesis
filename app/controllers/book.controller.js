@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import jwt from "jsonwebtoken";
+import { response } from "express";
 
 const infoLibro = async (req, res) => {
   if (req.query.COD_LIBRO) {
@@ -36,7 +37,7 @@ const infoLibro = async (req, res) => {
         dataGenero = datosG;
       })
 
-    res.render("pagina.ejs", { infoLibro: infoLibro, session: session,  generos: dataGenero});
+    res.render("pagina.ejs", { infoLibro: infoLibro, session: session, generos: dataGenero });
   } else {
     res.redirect("/");
   }
@@ -71,17 +72,18 @@ const prestamoLibro = async (req, res) => {
       await fetch(url, option)
         .then(response => response.json())
         .then(resPrestamo => {
+
           if (resPrestamo.message === "Prestamo  Realizado") { // El Prestamo se registrò correctamente
             res.redirect(`detalle?COD_LIBRO=${COD_LIBRO}&FECHA_PRESTAMO=${req.body.FECHA_PRESTAMO}&FECHA_DEVOLUCION=${req.body.FECHA_DEVOLUCION}`)
           } else {
             res.redirect("/libro/pagina");
+
           }
         })
 
     } catch (error) {
       console.log(error);
     }
-
   }
 }
 
@@ -89,7 +91,9 @@ const detalle = (req, res) => {
   res.send(req.query)
 };
 
+
 const authPrestamo = async (req, res) => {
+
 
   let COD_LIBRO = req.query.COD_LIBRO
   let FECHA_PRESTAMO = req.query.FECHA_PRESTAMO
@@ -98,6 +102,7 @@ const authPrestamo = async (req, res) => {
   if (COD_LIBRO && FECHA_PRESTAMO && FECHA_DEVOLUCION) {
     try {
       let url = "http://localhost:3000/api/loan-header/"
+
       let options = {
         method: "GET"
       }
@@ -107,14 +112,21 @@ const authPrestamo = async (req, res) => {
         .then(response => response.json())
         .then(loanHeader => dataHeader = loanHeader)
 
+      const fechaRegex = /^\d{2}-\d{2}-\d{4}$/;
 
+      if (fechaRegex.test === FECHA_PRESTAMO) {
+
+      }
 
     } catch (error) {
-
+      console.log(error);
     }
+
   } else {
     res.redirect('/')
   }
+
+
 };
 
 const confirmPrestamo = async (req, res) => {
@@ -134,11 +146,13 @@ const confirmPrestamo = async (req, res) => {
       dataGenero = datosG;
     })
 
-  res.render("confirm.ejs", { session: session,  generos: dataGenero});
+  res.render("confirm.ejs", { session: session, generos: dataGenero });
 };
 
-const prestamo = async(req, res) => {
+const prestamo = async (req, res) => {
   let COD_LIBRO = req.query.COD_LIBRO || false;
+
+
 
   let session = false;
 
@@ -156,7 +170,7 @@ const prestamo = async(req, res) => {
       dataGenero = datosG;
     })
 
-  res.render("prestamo.ejs", { session: session, COD_LIBRO: COD_LIBRO, generos: dataGenero});
+  res.render("prestamo.ejs", { session: session, COD_LIBRO: COD_LIBRO, generos: dataGenero });
 };
 
 export const bookController = {

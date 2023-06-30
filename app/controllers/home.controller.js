@@ -40,6 +40,8 @@ const index = async (req, res) => {
         }
 
         datosLibro = convert;
+
+        res.render("index", { libros: datosLibro, session: session,generos: dataGenero });
       });
 
     const urlGenero = `http://localhost:3000/api/genre/`;

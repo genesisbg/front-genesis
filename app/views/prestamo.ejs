@@ -37,26 +37,36 @@
     <article class="col-sm-6 col-md-8 pt-7" id="medio">
       <section class="resena">
         <form action="prestamoLibro?COD_LIBRO=<%= COD_LIBRO %>" method="post">
-          <label  class="texto1"> Fecha de Prestamo 
-            <input type="date" placeholder= "" name="FECHA_PRESTAMO" class="input input-bordered input-lg w-full max-w-xs"
-              required />
-          </label>
-          <label  class="texto1"> Fecha de devolucion del libro
-            <input type="date" placeholder="" name="FECHA_DEVOLUCION" class="input input-bordered input-lg w-full max-w-xs"
-              required />
-          </label>
-          <label  class="texto1 pt-7"> Acepto Terminos Y condiciones
+
+          <label class="texto1 pt-7">Fecha del prestamo</label>
+
+          <div class="relative max-w-sm">
+
+            <input id="date" type="date" name="FECHA_PRESTAMO"
+              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+          </div>
+
+          <label class="texto1 pt-7">Fecha del devolucion</label>
+
+          <div class="relative max-w-sm">
+            <input id="date" type="date" name="FECHA_DEVOLUCION"
+              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+          </div>
+
+          <label class="texto1 pt-7"> Acepto Terminos Y condiciones
+
             <input type="checkbox" class="checkbox checkbox-accent" />
           </label>
           <button class="btn btn-block btn-info" type="submit">ENVIAR</button>
         </form>
-        
+
       </section>
 
   </main>
 
   <!-- Script para el carrousel -->
   <script src="/assets/js/owl-function.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.6/datepicker.min.js"></script>
 
   <footer>
     <%- include('./partials/footer.ejs') %>

@@ -1,6 +1,13 @@
 import fetch from "node-fetch";
+import PDFDocument from "pdfkit";
+import 'pdfkit-table';
+import XLSX from "xlsx";
+import fs from "fs";
 import jwt from "jsonwebtoken";
+
+
 const render = async (req, res) => {
+
     try {
         const token = jwt.verify(req.cookies.cookieBG, process.env.SECRET_KEY)
         const url = `http://localhost:3000/api/loan-header`;
@@ -33,9 +40,16 @@ const render = async (req, res) => {
 
 const perfilPrestamos = async (req, res) => {
 
-    // res.render("dashprestamos",{prestamos: dataPrestamo});
-}
+    
+  }
+  const pqr = async (req, res) => {
+
+    res.render("pqr.ejs")
+  }
+
 export const userController = {
+
     render,
-    perfilPrestamos
+    perfilPrestamos,
+    pqr  
 };
