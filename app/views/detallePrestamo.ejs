@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dracula">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- boostrap -->
+    <%- include('./partials/boostrap') %>
+        <!-- olw Carousel -->
+        <%- include('./partials/owl.ejs') %>
+            <!-- css style -->
+            <link rel="stylesheet" href="/assets/css/pagina-style.css">
+            <link rel="stylesheet" href="/assets/css/pagina-index.css">
+
+            <title>Prestamo</title>
+</head>
+
+<body>
+
+    <article class="jumbotron">
+            <section class="detail">
+                    <h1 class="display-4">Libro prestado!</h1>
+                    <p class="lead">Tu fecha de prestamo es  <%= detalles %></p>
+                    <p class="lead">Recuerda devolver el libro el <%= detalle %></p>
+            </section> 
+                    
+            <section>         
+                    <hr class="my-4">
+                    <p></p>
+                    <br>
+                    <a class="btn btn-secundary btn-mg" href="/" role="button">Aceptar</a>
+            </section>
+    </article>
+
+
+</body>
+
+<footer>
+    <%- include('./partials/footer.ejs') %>
+</footer>
+
+</html>

@@ -405,7 +405,7 @@ const dashPrestamos = async (req, res) => {
       })
     res.render("dashprestamos", { prestamos: dataPrestamo });
   } catch (error) {
-    res.render("dashprestamos", { prestamos: dataPrestamo });
+    res.status(500).send(error.message)
   }
 
 }

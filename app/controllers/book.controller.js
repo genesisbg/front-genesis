@@ -90,13 +90,18 @@ const prestamoLibro = async (req, res) => {
 }
 
 const detalle = (req, res) => {
-  res.send(req.query)
+
+  let FECHA_DEVOLUCION = req.query.FECHA_DEVOLUCION;
+  let FECHA_PRESTAMO = req.query.FECHA_PRESTAMO;
+
+  let session = false;
+
+res.render("detallePrestamo.ejs", { detalle: FECHA_DEVOLUCION, detalles: FECHA_PRESTAMO, session: session })
+
 };
 
 
 const authPrestamo = async (req, res) => {
-
-
   let COD_LIBRO = req.query.COD_LIBRO
   let FECHA_PRESTAMO = req.query.FECHA_PRESTAMO
   let FECHA_DEVOLUCION = req.query.FECHA_DEVOLUCION
@@ -113,13 +118,6 @@ const authPrestamo = async (req, res) => {
       await fetch(url, options)
         .then(response => response.json())
         .then(loanHeader => dataHeader = loanHeader)
-
-      const fechaRegex = /^\d{2}-\d{2}-\d{4}$/;
-
-      if (fechaRegex.test === FECHA_PRESTAMO) {
-
-      }
-
     } catch (error) {
       console.log(error);
     }
