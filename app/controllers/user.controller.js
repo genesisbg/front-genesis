@@ -10,7 +10,7 @@ const render = async (req, res) => {
 
     try {
         const token = jwt.verify(req.cookies.cookieBG, process.env.SECRET_KEY)
-        const url = `http://localhost:3000/api/loan-header`;
+        const url = process.env.ENDPOINT + `api/loan-header`;
         const option = { method: "GET" };
         let dataPrestamo = {};
 

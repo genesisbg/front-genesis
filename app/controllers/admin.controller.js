@@ -29,7 +29,7 @@ const update = async (req, res) => {
     }
     if (datosUsuario.NOM_USUARIO && datosUsuario.APELL_USUARIO && datosUsuario.CORREO && datosUsuario.CONTRASENA && datosUsuario.FECHA_NAC && datosUsuario.SEXO && datosUsuario.ESTADO && datosUsuario.COD_ROL) {
       try {
-        const url = `http://localhost:3000/api/user/${cod_usuario}`;
+        const url = process.env.ENDPOINT + `api/user/${cod_usuario}`;
         const option = {
           method: "PUT",
           headers: {
@@ -73,7 +73,7 @@ const dashUsuarios = async (req, res) => {
   const alertCase = req.query.alert
 
   try {
-    const url = `http://localhost:3000/api/user`;
+    const url = process.env.ENDPOINT + `api/user`;
     const option = { method: "GET" };
     let datosUsuarios = {};
 
@@ -131,7 +131,7 @@ const insertarUsuario = async (req, res) => {
     }
     if (datosUsuario.DNI_USUARIO && datosUsuario.NOM_USUARIO && datosUsuario.APELL_USUARIO && datosUsuario.CORREO && datosUsuario.CONTRASENA && datosUsuario.FECHA_NAC && datosUsuario.SEXO && datosUsuario.ESTADO && datosUsuario.COD_ROL) {
       try {
-        const url = 'http://localhost:3000/api/user';
+        const url = process.env.ENDPOINT + 'api/user';
         const option = {
           method: "POST",
           headers: {
@@ -192,7 +192,7 @@ const banUsuario = async (req, res) => {
 
     try {
 
-      const url = `http://localhost:3000/api/user/${id}`;
+      const url = process.env.ENDPOINT + `api/user/${id}`;
       const option = {
         method: "PATCH",
         headers: {
@@ -229,7 +229,7 @@ const dashLibros = async (req, res) => {
   const alertCase = req.query.alert
 
   try {
-    const url = `http://localhost:3000/api/books`;
+    const url = process.env.ENDPOINT + `api/books`;
     const option = { method: "GET" };
     let datosLibros = {};
 
@@ -288,7 +288,7 @@ const insertarLibros = async (req, res) => {
     }
     if (datosLibro.SIPNOPSIS && datosLibro.TITULO && datosLibro.FECHA_PUBLICACION && datosLibro.NUM_SERIE && datosLibro.EDITORIAL && datosLibro.COD_GENERO && datosLibro.NOM_AUTOR ) {
       try {
-        const url = 'http://localhost:3000/api/books';
+        const url = process.env.ENDPOINT + 'api/books';
         const option = {
           method: "POST",
           headers: {
@@ -344,7 +344,7 @@ const editarLibros = async (req, res) => {
       datosLibro.IMAGEN
     ) {
       try {
-        const url = `http://localhost:3000/api/books/${COD_LIBRO}`;  // URL del libro específico a actualizar
+        const url = process.env.ENDPOINT + `api/books/${COD_LIBRO}`;  // URL del libro específico a actualizar
         const option = {
           method: "PUT",  // Método HTTP PUT para actualizar el libro
           headers: {
@@ -372,7 +372,7 @@ const editarLibros = async (req, res) => {
 
 const eliminarLibros = async (req, res) => {
   const id = req.query.id;
-  const url = `http://localhost:3000/api/books/${id}`;
+  const url = process.env.ENDPOINT + `api/books/${id}`;
   const option = {
     method: "DELETE"
   };
@@ -394,7 +394,7 @@ const eliminarLibros = async (req, res) => {
 
 const dashPrestamos = async (req, res) => {
   try {
-    const url = `http://localhost:3000/api/loan-header`;
+    const url = process.env.ENDPOINT + `api/loan-header`;
     const option = { method: "GET" };
     let dataPrestamo = {};
 
@@ -413,7 +413,7 @@ const dashPrestamos = async (req, res) => {
 const eliminarPrestamos = async (req, res) => {
 
   const id = req.query.id;
-  const url = `http://localhost:3000/api/loan-header/${id}`;
+  const url = process.env.ENDPOINT + `api/loan-header/${id}`;
   const option = {
     method: "DELETE"
   };
@@ -434,7 +434,7 @@ const getUser = async () => {
 
 
   try {
-    const response = await fetch("http://localhost:3000/api/user");
+    const response = await fetch(process.env.ENDPOINT + "api/user");
     const user = await response.json();
     return user;
   } catch (error) {
@@ -576,7 +576,7 @@ const excel = async (req, res) => {
 };
 const getPrestamo = async () => {
   try {
-    const response = await fetch("http://localhost:3000/api/loan-header");
+    const response = await fetch(process.env.ENDPOINT + "api/loan-header");
     const presta = await response.json();
     return presta;
   } catch (error) {

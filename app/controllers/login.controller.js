@@ -8,7 +8,7 @@ const authentication = async (req, res) => {
   if (COD_USUARIO && CONTRASENA) {
     try {
 
-      const url = `http://localhost:3000/api/user/${COD_USUARIO}`;
+      const url = process.env.ENDPOINT + `api/user/${COD_USUARIO}`;
       const options = { method: "GET" };
       let payload = {};
 
@@ -125,7 +125,7 @@ const registro = async (req, res) => {
   // Valida si nos datos necesarios para el registro si existen
   if (datosUsuario.DNI_USUARIO && datosUsuario.NOM_USUARIO && datosUsuario.APELL_USUARIO && datosUsuario.CORREO && datosUsuario.CONTRASENA && datosUsuario.FECHA_NAC && datosUsuario.SEXO && datosUsuario.ESTADO && datosUsuario.COD_ROL) {
     try {
-      const url = 'http://localhost:3000/api/user';
+      const url = process.env.ENDPOINT + 'api/user';
       const option = {
         method: "POST",
         headers: {

@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 const index = async (req, res) => {
   try {
-    let url = "http://localhost:3000/api/books/";
+    let url = process.env.ENDPOINT + "api/books";
     let options = { method: "GET" };
     let datosLibro = {};
     let session = false;
@@ -44,7 +44,7 @@ const index = async (req, res) => {
       });
 
       // Fetch de generos
-    const urlGenero = `http://localhost:3000/api/genre/`;
+    const urlGenero = process.env.ENDPOINT + "api/genre";
     // let options = { method: "GET" };
     let dataGenero = {};
 
@@ -69,7 +69,7 @@ const genero = async (req, res) => {
     session = true
   };
 
-  const urlGenero = `http://localhost:3000/api/genre/`;
+  const urlGenero = process.env.ENDPOINT + `api/genre/`;
   let options = { method: "GET" };
   let dataGenero = {};
 

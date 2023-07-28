@@ -7,7 +7,7 @@ const infoLibro = async (req, res) => {
     let COD_LIBRO = req.query.COD_LIBRO;
     let session = false;
 
-    let url = `http://localhost:3000/api/books/${COD_LIBRO}`;
+    let url = process.env.ENDPOINT + `api/books/${COD_LIBRO}`;
     let options = { method: "GET" };
     let infoLibro = {};
 
@@ -28,7 +28,7 @@ const infoLibro = async (req, res) => {
       session = true
     }
 
-    const urlGenero = `http://localhost:3000/api/genre/`;
+    const urlGenero = process.env.ENDPOINT + `api/genre/`;
     let dataGenero = {};
 
     await fetch(urlGenero, options)
@@ -62,7 +62,7 @@ const prestamoLibro = async (req, res) => {
   if (datosPrestamo.FECHA_PRESTAMO && datosPrestamo.FECHA_DEVOLUCION) {
 
     try {
-      const url = 'http://localhost:3000/api/loan-header';
+      const url = process.env.ENDPOINT + 'api/loan-header';
       const option = {
         method: "POST",
         headers: {
@@ -108,7 +108,7 @@ const authPrestamo = async (req, res) => {
 
   if (COD_LIBRO && FECHA_PRESTAMO && FECHA_DEVOLUCION) {
     try {
-      let url = "http://localhost:3000/api/loan-header/"
+      let url = process.env.ENDPOINT + "api/loan-header/"
 
       let options = {
         method: "GET"
@@ -136,7 +136,7 @@ const confirmPrestamo = async (req, res) => {
     session = true
   }
 
-  const urlGenero = `http://localhost:3000/api/genre/`;
+  const urlGenero = process.env.ENDPOINT + `api/genre/`;
   let options = { method: "GET" };
   let dataGenero = {};
 
@@ -160,7 +160,7 @@ const prestamo = async (req, res) => {
     session = true
   }
 
-  const urlGenero = `http://localhost:3000/api/genre/`;
+  const urlGenero = process.env.ENDPOINT + `api/genre/`;
   let options = { method: "GET" };
   let dataGenero = {};
 
